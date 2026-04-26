@@ -1,0 +1,29 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fem-sim"
+version = "0.1.0"
+description = "FEM simulation orchestration and dataset generation for ML training."
+requires-python = ">=3.13"
+dependencies = [
+    "numpy>=2.2",
+    "pip>=26.0.1",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+viz = ["matplotlib>=3.10"]
+plugins = ["Pillow>=10.0"]
+jaxfem = ["jax>=0.4.30", "jax-fem>=0.0.6", "pyfiglet>=1.0", "meshio>=5.3", "gmsh>=4.11", "fenics-basix>=0.8"]
+notebook = ["jupyter>=1.1", "ipykernel>=6.29", "matplotlib>=3.10"]
+all = ["matplotlib>=3.10", "Pillow>=10.0", "jax>=0.4.30", "jax-fem>=0.0.6", "jupyter>=1.1", "ipykernel>=6.29"]
+
+[project.scripts]
+fem-sim = "fem_sim.cli:main"
+fem-dataset-build = "fem_sim.campaign:main"
+fem-dataset-inspect = "fem_sim.inspect:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fem_sim"]

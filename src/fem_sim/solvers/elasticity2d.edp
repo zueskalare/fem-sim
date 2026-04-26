@@ -1,0 +1,226 @@
+// elasticity2d.edp
+// =================
+// 2D plane-stress linear elasticity solver driven by pixel-grid data files.
+//
+// Python writes geometry.dat and boundary.dat as TSV files on a regular
+// (nx × ny) pixel grid.  This script:
+//   1. Reads the data files
+//   2. Builds a square mesh matching the pixel grid
+//   3. Maps pixel material properties and BCs onto FE fields
+//   4. Solves plane-stress elasticity with quasi-static load ramping
+//   5. Outputs displacement and stress fields sampled on pixel centres
+//
+// Usage:
+//   FreeFem++ elasticity2d.edp -nx 32 -ny 16 -steps 10 \
+//       -run_dir outputs/runs/sample_0000
+//
+// Input files (written by pixel_to_fem.py):
+//   geometry.dat  — ix iy solid E nu rho   (nx*ny rows, no header)
+//   boundary.dat  — ix iy disp_mask force_mask dx dy fx fy
+//
+// Output files:
+//   mesh.mesh             — FreeFEM mesh
+//   fields_step_NNN.tsv   — ix iy ux uy sxx syy sxy  (per load step)
+//   series.tsv            — step, load_fraction, max_ux, max_uy
+//   summary.tsv           — key-value pairs of run parameters
+
+include "getARGV.idp"
+
+// ---------------------------------------------------------------------------
+// Parameters
+// ---------------------------------------------------------------------------
+int nx   = getARGV("-nx", 32);
+int ny   = getARGV("-ny", 16);
+int nsteps = getARGV("-steps", 10);
+string runDir = getARGV("-run_dir", ".");
+
+string geoFile     = runDir + "/geometry.dat";
+string bcFile      = runDir + "/boundary.dat";
+string seriesFile  = runDir + "/series.tsv";
+string meshFile    = runDir + "/mesh.mesh";
+string summaryFile = runDir + "/summary.tsv";
+
+// Domain spans [0, lx] × [0, ly].  Pixel coordinates are normalised.
+real lx = 1.0;
+real ly = real(ny) / real(nx);   // aspect ratio matches pixel grid
+
+// ---------------------------------------------------------------------------
+// Mesh  (one quad per pixel, split into 2 triangles by FreeFEM)
+// ---------------------------------------------------------------------------
+mesh Th = square(nx, ny, [lx * x, ly * y]);
+savemesh(Th, meshFile);
+
+// ---------------------------------------------------------------------------
+// FE spaces
+// ---------------------------------------------------------------------------
+fespace Vh(Th, P1);           // scalar P1
+fespace Vh2(Th, [P1, P1]);   // vector P1
+
+// ---------------------------------------------------------------------------
+// Read geometry.dat → material property FE fields
+// ---------------------------------------------------------------------------
+Vh Efield, nuField, solidMask;
+{
+    real[int] solidArr(nx * ny), Earr(nx * ny), nuArr(nx * ny);
+    {
+        ifstream fin(geoFile);
+        for (int k = 0; k < nx * ny; ++k) {
+            int ix, iy;
+            real s, Ev, nuv, rhov;
+            fin >> ix >> iy >> s >> Ev >> nuv >> rhov;
+            int idx = ix + iy * nx;
+            solidArr[idx] = s;
+            Earr[idx]     = Ev;
+            nuArr[idx]    = nuv;
+        }
+    }
+
+    // Map each FE node to its nearest pixel.
+    // clamp to [0, nx-1] and [0, ny-1].
+    Efield    = Earr[min(int(x / lx * nx), nx - 1)
+                     + min(int(y / ly * ny), ny - 1) * nx];
+    nuField   = nuArr[min(int(x / lx * nx), nx - 1)
+                       + min(int(y / ly * ny), ny - 1) * nx];
+    solidMask = solidArr[min(int(x / lx * nx), nx - 1)
+                         + min(int(y / ly * ny), ny - 1) * nx];
+}
+
+// ---------------------------------------------------------------------------
+// Read boundary.dat → BC FE fields
+// ---------------------------------------------------------------------------
+Vh dispMask, forceMask, dxVal, dyVal, fxVal, fyVal;
+{
+    real[int] dmArr(nx * ny), fmArr(nx * ny);
+    real[int] dxA(nx * ny), dyA(nx * ny), fxA(nx * ny), fyA(nx * ny);
+    {
+        ifstream fin(bcFile);
+        for (int k = 0; k < nx * ny; ++k) {
+            int ix, iy;
+            real dm, fm, ddx, ddy, ffx, ffy;
+            fin >> ix >> iy >> dm >> fm >> ddx >> ddy >> ffx >> ffy;
+            int idx = ix + iy * nx;
+            dmArr[idx] = dm;
+            fmArr[idx] = fm;
+            dxA[idx]   = ddx;
+            dyA[idx]   = ddy;
+            fxA[idx]   = ffx;
+            fyA[idx]   = ffy;
+        }
+    }
+    dispMask  = dmArr[min(int(x / lx * nx), nx - 1)
+                      + min(int(y / ly * ny), ny - 1) * nx];
+    forceMask = fmArr[min(int(x / lx * nx), nx - 1)
+                      + min(int(y / ly * ny), ny - 1) * nx];
+    dxVal     = dxA[min(int(x / lx * nx), nx - 1)
+                    + min(int(y / ly * ny), ny - 1) * nx];
+    dyVal     = dyA[min(int(x / lx * nx), nx - 1)
+                    + min(int(y / ly * ny), ny - 1) * nx];
+    fxVal     = fxA[min(int(x / lx * nx), nx - 1)
+                    + min(int(y / ly * ny), ny - 1) * nx];
+    fyVal     = fyA[min(int(x / lx * nx), nx - 1)
+                    + min(int(y / ly * ny), ny - 1) * nx];
+}
+
+// ---------------------------------------------------------------------------
+// Plane-stress constitutive helpers
+//   σ_xx = λ2d (ε_xx + ε_yy) + 2μ ε_xx
+//   σ_yy = λ2d (ε_xx + ε_yy) + 2μ ε_yy
+//   σ_xy = 2μ ε_xy
+// where μ = E / (2(1+ν)),  λ2d = 2μν / (1-ν)  (plane stress Lamé).
+// ---------------------------------------------------------------------------
+Vh mu    = Efield / (2.0 * (1.0 + nuField));
+Vh lam2d = 2.0 * mu * nuField / (1.0 - nuField + 1e-30);
+
+// ---------------------------------------------------------------------------
+// Quasi-static load stepping
+// ---------------------------------------------------------------------------
+ofstream series(seriesFile);
+series << "step\tload_fraction\tmax_ux\tmax_uy" << endl;
+
+real penalty = 1e20;   // Dirichlet penalty coefficient
+
+for (int istep = 0; istep < nsteps; ++istep) {
+
+    real alpha = (istep + 1.0) / nsteps;   // ramp 1/N … 1.0
+
+    // Scale BCs by current load fraction.
+    Vh curDx = dxVal * alpha;
+    Vh curDy = dyVal * alpha;
+    Vh curFx = fxVal * alpha;
+    Vh curFy = fyVal * alpha;
+
+    // Solve: find (ux, uy) in Vh2 such that a(u,v) = L(v)  ∀ v.
+    Vh2 [ux, uy], [vx, vy];
+
+    solve elasticity([ux, uy], [vx, vy]) =
+
+        // ---- bilinear form: plane-stress stiffness ----
+        int2d(Th)(
+            lam2d * (dx(ux) + dy(uy)) * (dx(vx) + dy(vy))
+            + 2.0 * mu * (
+                dx(ux) * dx(vx)
+                + dy(uy) * dy(vy)
+                + 0.5 * (dy(ux) + dx(uy)) * (dy(vx) + dx(vy))
+            )
+        )
+
+        // ---- applied forces (RHS) ----
+        // Forces live on boundary pixels; forceMask is 1 on those pixels.
+        // We treat them as a distributed body-force on the narrow band of
+        // elements touching the boundary.  The per-pixel force values
+        // (fx, fy) are already in force-per-pixel units written by Python.
+        - int2d(Th)(
+            forceMask * (curFx * vx + curFy * vy)
+        )
+
+        // ---- Dirichlet BCs via penalty ----
+        // Where dispMask ≈ 1, penalise (u − u_prescribed).
+        + int2d(Th)(
+            dispMask * penalty * (ux * vx + uy * vy)
+        )
+        - int2d(Th)(
+            dispMask * penalty * (curDx * vx + curDy * vy)
+        )
+        ;
+
+    // ---- post-process: stress fields ----
+    Vh sxx, syy, sxy;
+    sxx = lam2d * (dx(ux) + dy(uy)) + 2.0 * mu * dx(ux);
+    syy = lam2d * (dx(ux) + dy(uy)) + 2.0 * mu * dy(uy);
+    sxy = mu * (dy(ux) + dx(uy));
+
+    // ---- write fields at pixel centres ----
+    string fieldFile = runDir + "/fields_step_" + istep + ".tsv";
+    {
+        ofstream fout(fieldFile);
+        fout << "ix\tiy\tux\tuy\tsxx\tsyy\tsxy" << endl;
+        for (int iy = 0; iy < ny; ++iy) {
+            for (int ix = 0; ix < nx; ++ix) {
+                // Pixel centre in physical coords.
+                real px = (ix + 0.5) / nx * lx;
+                real py = (iy + 0.5) / ny * ly;
+                fout << ix << "\t" << iy << "\t"
+                     << ux(px, py)  << "\t" << uy(px, py)  << "\t"
+                     << sxx(px, py) << "\t" << syy(px, py) << "\t"
+                     << sxy(px, py) << endl;
+            }
+        }
+    }
+
+    // ---- series log ----
+    real maxUx = ux[].linfty;
+    real maxUy = uy[].linfty;
+    series << istep << "\t" << alpha << "\t" << maxUx << "\t" << maxUy << endl;
+}
+
+// ---------------------------------------------------------------------------
+// Summary
+// ---------------------------------------------------------------------------
+{
+    ofstream fout(summaryFile);
+    fout << "nx\t"    << nx     << endl;
+    fout << "ny\t"    << ny     << endl;
+    fout << "steps\t" << nsteps << endl;
+    fout << "lx\t"    << lx     << endl;
+    fout << "ly\t"    << ly     << endl;
+}

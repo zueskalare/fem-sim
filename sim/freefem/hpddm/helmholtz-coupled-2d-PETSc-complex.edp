@@ -1,0 +1,175 @@
+//  run with MPI:  ff-mpirun -np 4 script.edp
+// NBPROC 4
+
+load "bem"
+load "PETSc-complex"
+include "macro_ddm.idp"
+
+if(!HasType("Mat", "Htool")) exit(0);
+
+complex k = 10; // wavenumber
+
+real lambda = 2*pi/real(k);
+
+real nloc = 10./lambda;
+real n = nloc*2*pi;
+
+int[int] nsl(10); // number of lenses
+nsl = n;
+
+real theta = 10*2*pi/360; // angular shift between lenses
+
+real[int] nsx(nsl.n), nsy(nsl.n);
+nsx[0] = 3.2;
+nsy[0] = 0;
+
+for (int i=1; i< nsl.n; i++) {
+  nsx[i] = nsx[i-1] + 2.01*cos(i*theta);
+  nsy[i] = nsy[i-1] + 2.01*sin(i*theta);
+}
+
+int interface = 1;
+int waveguide = 2;
+
+border circle(t=0, 2*pi; i){x=cos(t)+nsx[i]; y=sin(t)+nsy[i]; z=0; label=interface;}
+
+real L = 2;
+real l = 0.3;
+real dd = 0.1;
+
+func finc = exp(-100*((x+L-0.1)^2+y^2+z^2)); // source for waveguide excitation
+
+// interface around the waveguide :
+border a(t=-L-dd, L+dd){x=t; y=-l-dd; z=0; label=interface;}
+border b(t=-l-dd, l+dd){x=L+dd; y=t; z=0; label=interface;}
+border c(t=L+dd, -L-dd){x=t; y=l+dd; z=0; label=interface;}
+border d(t=l+dd, -l-dd){x=-L-dd; y=t; z=0; label=interface;}
+
+// waveguide :
+border ga(t=-L, L){x=t; y=-l; z=0; label=waveguide;}
+border gc(t=L, -L){x=t; y=l; z=0; label=waveguide;}
+border gd(t=l, -l){x=-L; y=t; z=0; label=waveguide;}
+
+mesh Thwaveguide = buildmesh(a(nloc*(2*L+2*dd))+b(nloc*(2*l+2*dd))+c(nloc*(2*L+2*dd))+d(nloc*(2*l+2*dd))
+                         +ga(nloc*2*L)+gc(nloc*2*L)+gd(nloc*2*l));
+
+mesh Thlenses = buildmesh(circle(nsl));
+// we do not want any region with label 0 for the lenses, as 0 is the waveguide region in Thwaveguide :
+Thlenses = change(Thlenses,fregion=region+1);
+
+mesh Th = Thwaveguide + Thlenses; // FEM mesh
+
+meshL ThG = extract(Th);
+ThG = trunc(ThG,region==interface);
+ThG = OrientNormal(ThG,unbounded=1); // BEM mesh
+
+// change region labels in the fem mesh to define gradient index in lenses
+fespace Ph(Th,P0);
+Ph reg = region;
+
+int[int] regs(2*nsl.n+2);
+for (int i=0; i< nsl.n; i++){
+  int regi = reg(nsx[i], nsy[i]); // the lenses
+  regs[2*i] = regi;
+  regs[2*i+1] = i+1;
+}
+regs[2*nsl.n] = reg(0,0); // the waveguide
+regs[2*nsl.n+1] = -1;
+Th = change(Th,region=regs);
+
+func ind = region == -1 ? 1 : 2./(1+((x-nsx[region-1])^2+(y-nsy[region-1])^2)); // gradient index in lenses
+
+plot(ThG);
+Mat<complex> A, T;
+if(usedARGV("-user_partitioning") == -1) {
+    MatCreate(Th, A, P1);
+    MatCreate(Th, T, P0);
+}
+else {
+    int[int] n2o;
+    mesh withBEM = trunc(Th, (x-3.2)^2+y^2 > 0.6, new2old = n2o);
+    fespace PhPart(withBEM, P0);
+    PhPart partWithBEM;
+    partitionerSeq(partWithBEM[], withBEM, mpisize - 1);
+    partitionerPar(partWithBEM[], withBEM, mpiCommWorld, mpisize - 1);
+    Ph part;
+    part[] = mpisize - 1;        // last rank has no BEM unknown
+    part[](n2o) = partWithBEM[]; // no need for restrict since using P0
+    plot(part);
+    macro ThUserPartitioning()part[]//
+    MatCreate(Th, A, P1);
+    MatCreate(Th, T, P0);
+}
+meshL ThL;
+{
+    int[int] labels=labels(Th);
+    if(labels.max > 0) {
+        fespace PhL(ThG, P0);
+        PhL u = (region==interface)*chi(Th);
+        ThL = trunc(ThG,abs(u-1.0)<1.0e-2);
+    }
+}
+fespace Vh(Th, P1);
+macro Grad(u) [dx(u),dy(u)] // EOM
+varf varfA(u,v) = int2d(Th)(-ind*k^2*u*v+Grad(u)'*Grad(v)) + on(waveguide,u=0);
+A = varfA(Vh, Vh, tgv = -1);
+fespace VhS(ThL, P1);
+matrix RVtoS = interpolate(VhS, Vh);
+Mat<complex> ASurf(A, restriction = RVtoS);
+{
+    fespace PhS(ThL, P0);
+    matrix PVtoS = interpolate(PhS, Ph);
+    Mat<complex> TSurf(T, restriction = PVtoS);
+    CoherentGlobalMesh(TSurf, ASurf, ThL, ThG);
+    MatDestroy(T);
+}
+matrix<complex> Mass;
+if(ThL.nt) {
+    varf varfMass(u,v) = int1d(Th,interface)(u*v) + on(waveguide,u=0);
+    Mass = varfMass(Vh, Vh, tgv = -10);
+    matrix IdV = eye(Vh.ndof);
+    renumbering(Mass, RVtoS, R = IdV);
+}
+Mat<complex> TDL(ASurf);
+{
+    fespace UhG(ThG, P1);
+    varf varfTDL(u,v) = int1dx1d(ThG)(ThG)(BEM(BemKernel("TDL",k=k),u,v)) + int1d(ThG)(0.5*u*v);
+    TDL = varfTDL(UhG, UhG);
+    varf varfSL(u,v) = int1dx1d(ThG)(ThG)(BEM(BemKernel("SL",k=k),u,v));
+    ASurf = varfSL(UhG, UhG, sym = 1, sparams = "-mat_htool_epsilon 1.0e-3");
+    ASurf *= -1.0;
+}
+Mat<complex> VtoS(ASurf, A, Mass);
+Mat<complex> StoV(A, ASurf);
+{
+    matrix<complex> PStoV = RVtoS;
+    PStoV = PStoV';
+    StoV = PStoV;
+}
+complex[int] rhs(Vh.ndof + VhS.ndof);
+varf varfRHS(u,v) = int2d(Th)(finc*v) + on(waveguide,u=0);
+rhs(0:Vh.ndof - 1) = varfRHS(0, Vh, tgv = -1);
+Mat<complex> N;
+if(usedARGV("-aij") == -1) {
+    N = [[A,    StoV*TDL],
+         [VtoS, ASurf   ]];
+    real[int] list(N.n);
+    list(0:A.n-1) = 1.0;
+    if(ThL.nt)
+        list(A.n:list.n-1) = 2.0;
+    set(N, sparams = "-ksp_view -ksp_monitor -ksp_type fgmres -ksp_view_final_residual -fieldsplit_1_ksp_max_it 2000 -ksp_gmres_restart 200 -pc_type fieldsplit "+" -fieldsplit_0_pc_type asm -fieldsplit_0_sub_pc_type lu -fieldsplit_0_ksp_type gmres -fieldsplit_1_ksp_type gmres -fieldsplit_1_ksp_gmres_restart 2000 "+" -prefix_push fieldsplit_1_ -ksp_pc_side right -ksp_max_it 20 -prefix_pop", fields = list);
+}
+else {
+    Mat<complex> DTDL;
+    MatConvert(TDL, DTDL);
+    Mat<complex> R;
+    MatMatMult(StoV, DTDL, R);
+    N = [[A,    R    ],
+         [VtoS, ASurf]];
+    set(N, sparams = "-pc_type lu");
+}
+complex[int] x = N^-1 * rhs;
+Vh<complex> plt;
+plt[] = x(0:Vh.ndof-1);
+macro def(u)u//
+plotMPI(Th, real(plt), P1, def, real, cmm = "FEM solution");

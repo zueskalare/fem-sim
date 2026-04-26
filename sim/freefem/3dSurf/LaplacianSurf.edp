@@ -1,0 +1,106 @@
+// test to validate the addition of surfacic finite elements in FreeFEM
+
+load "medit"
+
+/////variational form
+
+/////////////////////////////////
+// laplacian 2D
+mesh Th = square(10,10);
+
+fespace Vh(Th,P1);
+Vh uVar,vVar;
+Vh uPb, vPb;
+func f = -12.;
+func g = P.x*P.x+2.*P.y*P.y;
+
+macro Grad2(uVar) [dx(uVar),dy(uVar)]  // EOM
+
+//with variational form
+varf a(uVar,vVar) = int2d(Th)(Grad2(uVar)'*Grad2(vVar))
+ + int2d ( Th ) ( f * vVar )
+  + on(1,uVar=g);
+
+matrix AVar =a(Vh,Vh);
+real[int] bVar = a(0,Vh);
+real[int] solVar = AVar^-1*bVar;
+
+// with problem
+
+problem Lap2d(uPb,vPb , solver = CG )  = int2d(Th)(Grad2(uPb)'*Grad2(vPb))
+ - int2d ( Th ) ( f * vPb )
+  + on(1,uPb=g);
+Lap2d;
+
+/////////////////////////////////////
+// laplacian Beltrami
+// build surface 3D  with Th 2D mesh and move with pi/2 rotation ThSurf
+real theta = pi/2;
+meshS ThS = movemesh23(Th, transfo=[x, cos(theta)*y-sin(theta)*z, sin(theta)*y+cos(theta)*z]);
+
+fespace VhS(ThS,P1);
+VhS uSVar,vSVar;
+VhS uSPb,vSPb;
+
+/*(const R3 & P){
+    R theta = 3.14; //pi/2.;
+    R x=P.x;
+    R y=cos(theta)*P.y-sin(theta)*P.z;
+    R z=sin(theta)*P.y+cos(theta)*P.z;
+    return x*x+2*y*y;} // boundary condition
+*/
+
+macro Grad3(uSVar) [dx(uSVar),dy(uSVar),dz(uSVar)]  // EOM
+
+//with variational form
+varf aS(uSVar,vSVar) = int2d(ThS)(Grad3(uSVar)'*Grad3(vSVar))
+ + int2d ( ThS ) ( f * vSVar )
+  + on(1,uSVar=g);
+matrix ASVar =aS(VhS,VhS);
+real[int] bSVar = aS(0,VhS);
+real[int] solSVar = ASVar^-1*bSVar;
+
+// with problem
+problem Lap3dS(uSPb,vSPb , solver = CG )  = int2d(ThS)(Grad3(uSPb)'*Grad3(vSPb))
+ - int2d ( ThS ) ( f * vSPb )
+  + on(1,uSPb=g);
+Lap3dS;
+
+savemesh (Th, "Th2D.mesh");
+savemesh (ThS, "ThS.mesh");
+
+// check solution for variational forms
+real[int] errVar = solVar - solSVar;
+cout << "---> norm error l2 for variationnal form " << errVar.l2 << endl;
+assert(errVar.l2 < 1e-10);
+
+// check solution with problem
+real[int] errPb = uPb[] - uSPb[];
+cout << "---> norm error l2 with problem " << errPb.l2;
+assert(errPb.l2 < 1e-10);
+
+medit("uSPb",ThS, uSPb);
+
+// test P2b and interpolate 2d->3d surface
+
+fespace Vh2(Th,P2b);
+Vh2 u2Var,v2Var;
+
+matrix A2Var =a(Vh2,Vh2);
+Vh2 b2Var; b2Var[] = a(0,Vh2);
+Vh2 sol2Var; sol2Var[] = A2Var^-1*b2Var[];
+
+
+ThS=square3(10,10);
+fespace Vh2S(ThS,P2b);
+Vh2S u2SVar,v2SVar;
+matrix A2SVar =aS(Vh2S,Vh2S);
+Vh2S b2SVar; b2SVar[] = aS(0,Vh2S);
+Vh2S sol2SVar; sol2SVar[] = A2SVar^-1*b2SVar[];
+
+matrix inter=interpolate(Vh2S,Vh2);
+Vh2S err2b; err2b[] = inter*sol2Var[];err2b[]-= sol2SVar[];
+
+cout << "---> norm error l2 for variationnal form with P2b" << err2b[].l2 << endl;
+assert(err2b[].l2 < 1e-10);
+

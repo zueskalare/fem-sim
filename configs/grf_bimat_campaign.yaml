@@ -1,0 +1,27 @@
+# GRF bi-material campaign — same coverage as grf_bimat_campaign.json,
+# but materials are pulled from the named library instead of relying on
+# the hard-coded TPU/PLA defaults baked into make_grf_bimat.
+#
+# Units: MPa-mm-ms  (E in MPa, density in Mg/mm^3).
+
+output_dir: outputs/datasets/grf_bimat_v2
+backend: jaxfem
+steps: 5
+
+materials:
+  TPU:   {E: 30.0,    nu: 0.48, rho: 1.2e-9}
+  PLA:   {E: 3500.0,  nu: 0.36, rho: 1.24e-9}
+  steel: {E: 210000.0, nu: 0.30, rho: 7.8e-9}
+
+geometries:
+  # Sweep correlation length and volume fraction with TPU+PLA microstructure.
+  - {type: grf_bimat, h: 48, w: 96, seed: 0, correlation_length: 3.0,  volume_fraction: 0.5, materials: [TPU, PLA]}
+  - {type: grf_bimat, h: 48, w: 96, seed: 1, correlation_length: 6.0,  volume_fraction: 0.5, materials: [TPU, PLA]}
+  - {type: grf_bimat, h: 48, w: 96, seed: 2, correlation_length: 12.0, volume_fraction: 0.5, materials: [TPU, PLA]}
+  - {type: grf_bimat, h: 48, w: 96, seed: 3, correlation_length: 6.0,  volume_fraction: 0.3, materials: [TPU, PLA]}
+  - {type: grf_bimat, h: 48, w: 96, seed: 4, correlation_length: 6.0,  volume_fraction: 0.7, materials: [TPU, PLA]}
+
+load_cases:
+  - {type: cantilever_distributed, load_mag: -5.0}
+  - {type: cantilever_point_load,  load_mag: -20.0, load_pos: 1.0}
+  - {type: top_load_fixed_bottom,  load_mag: -2.0}

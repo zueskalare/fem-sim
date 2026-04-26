@@ -1,0 +1,114 @@
+//  run with MPI:  ff-mpirun -np 4 script.edp
+// NBPROC 4
+// PARAM -freq 1e+9
+
+load "bem"
+load "PETSc-complex"
+macro dimension()3// EOM
+macro meshtype()S// EOM
+include "macro_ddm.idp"
+include "cobrameshcavity.idp"
+
+if(!HasType("Mat", "Htool")) exit(0);
+
+real sec1   = 0.01;
+real angle  = 2*pi*35/360;
+real radius = 0.186;
+real sec2   = 0.08;
+real sec3   = 0.1;
+real height = 0.084;
+real width  = 0.11;
+
+int npangler = 4;
+int npangleR = radius/(radius-height)*npangler;
+
+real c0     = 299792458;
+real f      = getARGV("-freq", 3.0e+9);
+complex k   = 2*pi*f/c0;
+real lambda = c0/f;
+real distx  = 0.2*lambda;
+real disty  = distx;
+real distz  = distx;
+
+int labextxm    = 11, labextxM = 12, labextym = 13, labextyM = 14, labextzm = 15, labextzM = 16;
+int regint      = 4, regext = 5;
+int labtomerge  = 7;
+int labmetal    = 1;
+int labi        = 2; // label in: entrance n = (-1,0,0)
+int labo        = labmetal; // label out
+
+// incident wave
+real[int] dir   = [1,0,0];
+func finc       = exp(1i*k*(dir[0]*x + dir[1]*y + dir[2]*z));
+int nloc        = 10.0*sec3/lambda;
+
+meshS ThS, ThG;
+fespace Uh(ThS, P1);
+fespace UhG(ThG, P1);
+varf vk(u, v) = int2dx2d(ThG)(ThG)(BEM(BemKernel("SL", k=k), u, v));
+Mat<complex> H;
+{
+    mesh3 Th3;
+    buildcobramesh(Th3);
+    Th3 = buildBdMesh(Th3);
+
+    ThS = Th3.Gamma;
+    ThS = trunc(ThS, region == labmetal);
+    ThG = ThS;
+    int[int] n2o;
+    macro ThSN2O()n2o//
+    MatCreate(ThS, H, P1);
+    Mat<complex> T;
+    MatCreate(ThS, T, P0);
+    CoherentGlobalMesh(T, H, ThS, ThG);
+}
+H = vk(UhG, UhG, sparams = "-mat_htool_epsilon 1.0e-4");
+plotDmesh(ThS, cmm = "Partitioning");
+bool mass = usedARGV("-mass") != -1;
+matrix<complex> M;
+if(mass) {
+    varf vM(u, v) = int2d(ThS)(u * v);
+    M = vM(Uh, Uh);
+}
+
+varf vRHS(u, v) = -int2d(ThS)(finc*v);
+
+Uh<complex> bf;
+bf[] = vRHS(0, Uh);
+if(mass) {
+    set(H, sparams = "-ksp_type fgmres -ksp_view_singularvalues -ksp_converged_reason -ksp_gmres_restart 1000 -pc_type asm", O = M);
+}
+complex[int] u = H^-1 * bf[];
+// visualization
+if(!NoGraphicWindow) {
+    distx = 2*lambda;
+    disty = distx;
+    distz = distx;
+
+    int np = 100;
+    meshS ThOutG = square3(np,np,
+                         [(sec1+(radius-height)*sin(angle)+sec2*cos(angle)+radius*sin(angle)+sec3+2*distx)*x-distx,
+                          (height+disty-((radius-height)*cos(angle)-(radius-height)-sec2*sin(angle)-radius+radius*cos(angle)-disty))*y
+                          +(radius-height)*cos(angle)-(radius-height)-sec2*sin(angle)-radius+radius*cos(angle)-disty,
+                          width/2]);
+    meshS ThOutS = ThOutG;
+    int[int] n2o;//
+    macro ThOutSN2O()n2o//
+    Mat<complex> B, T;
+    MatCreate(ThOutS, B, P1);
+    MatCreate(ThOutS, T, P0);
+    CoherentGlobalMesh(T, B, ThOutS, ThOutG);
+    MatDestroy(T);
+    fespace UhOutG(ThOutG, P1);
+    fespace UhOutS(ThOutS, P1);
+    varf vp(u, v) = int2d(ThS)(POT(BemPotential("SL", k=k), u, v));
+    Mat<complex> HPot(B, H);
+    HPot = vp(UhG, UhOutG, sparams = "-mat_htool_epsilon 1.0e-4");
+    ObjectView(HPot, format = "ascii_info_detail");
+    UhOutS<complex> v, vinc;
+    vinc = finc;
+    v[] = HPot*u;
+    v[] += vinc[];
+    UhOutS vr = real(v);
+    plotMPI(ThOutS, vr, P1, def, real, cmm = "Global first kind solution");
+}

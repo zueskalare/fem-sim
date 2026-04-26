@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+*.egg
+
+# uv / virtualenv
+.venv/
+
+# Claude Code local settings (per-clone, not shared)
+.claude/
+
+# Generated dataset artifacts (campaigns write here)
+outputs/
+
+# Loose FreeFEM run artifacts that land at the project root
+A.txt
+*.msh
+*.eps
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp

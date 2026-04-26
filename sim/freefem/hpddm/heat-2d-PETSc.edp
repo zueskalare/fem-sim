@@ -1,0 +1,45 @@
+//  run with MPI:  ff-mpirun -np 4 script.edp
+// NBPROC 4
+
+load "PETSc"                        // PETSc plugin
+include "macro_ddm.idp"             // additional DDM functions
+
+macro grad(u)[dx(u), dy(u)]// EOM   // two-dimensional gradient
+func Pk = P2;                       // finite element space
+
+real dt = getARGV("-dt", 0.1);                                 // time step
+real mu = 0.01;
+int iMax = getARGV("-iMax", 10);                                // number of iterations
+
+int[int] l = [1, 1, 1, 1];
+mesh Th = square(getARGV("-global", 40), getARGV("-global", 40), label = l); // global mesh
+Mat A;
+macro ThRefinementFactor()getARGV("-split", 1)//
+MatCreate(Th, A, Pk);
+
+fespace Wh(Th, Pk);                 // local finite element space
+real[int] rhs(Wh.ndof);             // local right-hand side
+matrix<real> M;                     // local mass matrix
+{                                   // local weak form
+    fespace Ph(Th, P0);
+    Ph f = x < 0.25 ? 1.0e+3 : 1.0e-3;
+    varf vPb(u, v) = int2d(Th)(u * v + dt * (grad(u)' * grad(v))) + int2d(Th)(dt * f *  v) + on(1, u = 0.0);
+    A = vPb(Wh, Wh, tgv = -1);
+    rhs = vPb(0, Wh, tgv = -1);
+    varf vPbM(u, v) = int2d(Th)(u * v);
+    M = vPbM(Wh, Wh);
+}
+
+set(A, sparams = "-ksp_view");
+Wh<real> u = 0.0;                   // local solution
+
+for(int i = 0; i < iMax; ++i) {
+    real[int] newRhs(rhs.n);
+    newRhs = M * u[];
+    newRhs += rhs;
+
+    u[] = A^-1 * newRhs;
+
+    macro def(u)u//
+    plotMPI(Th, u, Pk, def, real, cmm = "Global solution");
+}

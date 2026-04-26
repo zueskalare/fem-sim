@@ -1,0 +1,169 @@
+//  run with MPI:  ff-mpirun -np 4 script.edp
+// NBPROC 4
+
+load "PETSc"                  // PETSc plugin
+include "macro_ddm.idp"       // additional DDM functions
+
+macro def2(u)[u, u#B]// EOM
+macro init2(u)[u, u]// EOM
+macro def1(u)u// EOM
+macro init1(u)u// EOM
+macro grad(u)[dx(u), dy(u)]// EOM // two-dimensional gradient
+real Sqrt = sqrt(2.);
+macro epsilon(u)[dx(u), dy(u#B), (dy(u) + dx(u#B)) / Sqrt]// EOM
+macro div(u)(dx(u) + dy(u#B))// EOM
+func PkV = [P2, P2];          // finite element space for the velocities
+func PkP = P1;                // finite element space for the pressure
+
+int s = getARGV("-split", 1); // refinement factor
+
+mesh Th = square(1, 1);
+fespace VhV(Th, PkV);         // local finite element space for the velocities
+fespace VhP(Th, PkP);         // local finite element space for the pressure
+Mat dA, dC;
+{
+    mesh ThGlobal = square(getARGV("-global", 40), getARGV("-global", 40), [x, y]);
+    ThGlobal = trunc(ThGlobal, (x < 0.5) || (y < 0.5), label = 5);
+    Th = movemesh(ThGlobal, [-x, y]);
+    Th = ThGlobal + Th;
+    DmeshCreate(Th);
+    {
+        macro def(u)def2(u)//
+        macro init(u)init2(u)//
+        MatCreate(Th, dA, PkV);
+    }
+    {
+        macro def(u)def1(u)//
+        macro init(u)init1(u)//
+        MatCreate(Th, dC, PkP);
+    }
+}
+
+varf vPbA([u, uB], [v, vB]) = int2d(Th)(grad(u)' * grad(v) + grad(uB)' * grad(vB)) + on(1, 3, 5, u = 0, uB = 0) + on(2, u = y*(0.5-y), uB = 0);
+varf vPbB([q], [u, uB]) = int2d(Th)(-div(u) * q);
+int vPETSc;
+int pPETSc;
+{
+    matrix B = vPbB(VhP, VhV);
+    real[int] rhsV = vPbA(0, VhV);
+
+    dA = vPbA(VhV, VhV);
+    Mat dB(dA, dC, B);
+    Mat dS = [[dA , dB],
+              [dB', 0 ]];
+    ObjectView(dS);
+    set(dS, sparams = "-pc_type lu");
+    real[int] rhs(rhsV.n + VhP.ndof);
+    rhs(0:rhsV.n - 1) = rhsV;
+    real[int] sol = dS^-1 * rhs;
+    VhV def2(solV);
+    solV[] = sol(0:sol.n - VhP.ndof - 1);
+    VhP solP;
+    solP[] = sol(sol.n - VhP.ndof:sol.n - 1);
+    plotMPI(Th, def2(solV), PkV, def2, real, cmm = "Global velocity");
+    plotMPI(Th, solP, PkP, def1, real, cmm = "Global pressure");
+}
+{
+    matrix B = vPbB(VhP, VhV);
+    real[int] rhs = vPbA(0, VhV);
+
+    Mat dB(dA, dC, B);
+    Mat dS = [[dA , dB],
+              [dB', 0 ]];
+    Mat dF;
+    MatConvert(dS, dF);
+    set(dF, sparams = "-pc_type lu");
+    real[int] sol;
+    real[int] rhsPETScV, rhsPETScP;
+    VhV def2(solV);
+    VhP solP;
+    ChangeNumbering(dA, rhs, rhsPETScV);
+    ChangeNumbering(dC, solP[], rhsPETScP);
+    vPETSc = rhsPETScV.n;
+    pPETSc = rhsPETScP.n;
+    real[int] rhsPETSc = [rhsPETScV,
+                          rhsPETScP];
+    {
+        ObjectView(dF, format = "binary", name = "stokes-mat-binary");
+        real[int, int] rhsView(rhsPETSc.n, 1);
+        rhsView(:, 0) = rhsPETSc;
+        ObjectView(rhsView, format = "binary", name = "stokes-rhs-binary");
+        if(0) { // very costly
+            ObjectView(dF, format = "ascii", name = "stokes-mat-ascii");
+            ObjectView(dF, format = "matlab", name = "stokes-mat-matlab");
+            ObjectView(rhsView, format = "ascii", name = "stokes-rhs-ascii");
+            ObjectView(rhsView, format = "matlab", name = "stokes-rhs-matlab");
+        }
+    }
+    KSPSolve(dF, rhsPETSc, sol);
+    ChangeNumbering([dA, dC], [solV[], solP[]], sol, inverse = true, exchange = true);
+    plotMPI(Th, def2(solV), PkV, def2, real, cmm = "Global velocity");
+    plotMPI(Th, solP, PkP, def1, real, cmm = "Global pressure");
+}
+matrix<real> B = vPbB(VhP, VhV);
+
+dA = vPbA(VhV, VhV, tgv = -1);
+Mat dB(dA, dC, B);
+{
+    varf onGamma([u, uB], [v, vB]) = on(1, 3, 5, u = 1, uB = 1) + on(2, u = 1, uB = 1);
+    VhV def2(g);
+    g[] = onGamma(0, VhV, tgv = -1);
+    real[int] gPETSc;
+    ChangeNumbering(dA, g[], gPETSc);
+    MatZeroRows(dB, gPETSc);
+}
+matrix BT = B';
+Mat dBT(dC, dA, BT);
+Mat dS = [[dA , dB],
+          [dBT, 0 ]];
+real[int] rhsPETSc;
+VhV def2(solV);
+VhP solP;
+{
+    real[int] rhs = vPbA(0, VhV, tgv = -1);
+    ChangeNumbering([dA, dC], [rhs, solP[]], rhsPETSc);
+}
+for(int i = 0; i < 2; ++i) {
+    real[int] sol;
+    if(i == 0) {
+        Mat dF;
+        MatConvert(dS, dF);
+        set(dF, sparams = "-pc_type lu");
+        KSPSolve(dF, rhsPETSc, sol);
+    }
+    else {
+        varf vSAL(p, q) = int2d(Th)(p * q);
+        matrix SAL = vSAL(VhP, VhP);
+        Mat[int] tab(1);
+        Mat dSAL(dC, SAL);
+        tab[0] = dSAL;
+        real[int] list(rhsPETSc.n);
+        list(0:vPETSc - 1) = 1.0;
+        list(vPETSc:list.n - 1) = 2.0;
+        set(dS, sparams = "-pc_type fieldsplit -ksp_type fgmres -ksp_view -ksp_monitor -fieldsplit_0_pc_type hypre -fieldsplit_0_ksp_type gmres -fieldsplit_0_ksp_rtol 1e-2 " + " -fieldsplit_0_ksp_monitor -fieldsplit_1_pc_type jacobi -fieldsplit_1_ksp_type cg -fieldsplit_1_ksp_max_it 5", fields = list, schur = tab);
+        KSPSolve(dS, rhsPETSc, sol);
+    }
+    ChangeNumbering([dA, dC], [solV[], solP[]], sol, inverse = true, exchange = true);
+    string plus = (i == 1 ? " + mAL preconditioning" : "");
+    plotMPI(Th, def2(solV), PkV, def2, real, cmm = "Global velocity with tgv = -1" + plus);
+    plotMPI(Th, solP, PkP, def1, real, cmm = "Global pressure with tgv = -1" + plus);
+}
+{
+    ObjectView(dS);
+    real c = 20.0;
+    real[int] v, vPETSc;
+    v.resize(VhV.ndof);
+    v = mpirank;
+    ChangeNumbering(dA, v, vPETSc);
+    {
+        Mat dSC = [[dA     , dB, vPETSc],
+                   [dBT    , 0 , 0     ],
+                   [vPETSc', 0 , c     ]];
+        ObjectView(dSC);
+    }
+    {
+        Mat dSC = [[dA     , vPETSc],
+                   [vPETSc', c     ]];
+        ObjectView(dSC);
+    }
+}

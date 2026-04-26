@@ -1,0 +1,9 @@
+NoUseOfWait=true;int verbosityy=verbosity;
+ cout << "--------- file : membranerror.edp --------------------------------------------------------" << endl;
+verbosity=verbosityy;
+{ include "membranerror.edp";};
+ cout << "------------------------------------------------------------------------------ " << endl;
+ cout << "--------- file : test1.edp --------------------------------------------------------" << endl;
+verbosity=verbosityy;
+{ include "test1.edp";};
+ cout << "------------------------------------------------------------------------------ " << endl;

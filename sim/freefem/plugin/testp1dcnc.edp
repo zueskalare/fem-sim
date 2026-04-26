@@ -1,0 +1,83 @@
+load "Element_P1ncdc"
+load "Element_P1dc1"
+int errT=0; 
+
+macro Test(Th,FE,nFE)
+{
+int err=0; 	
+fespace Wh(Th,FE);
+Wh u=x,v,w;
+int[int] I(Wh.ndof), K(Wh.ndof);
+for(int k=0; k<Th.nt;++k)
+for(int i=0; i< Wh.ndofK;++i)
+{  int j = Wh(k,i);
+	I[j]= i;
+	K[j]=k;
+}
+for(int i=0; i< Wh.ndof;++i)
+{
+	if(0) cout << " i "<< i << endl;
+	u=0;
+	u[][i]=1;
+	v=u;
+	v[]-=u[];
+	err += v[].linfty>1e-7;
+	if(v[].linfty>1e-7) {v=u;cout << " err" << i<< " " << "Wh(k,i) " << K[i] << " " << I[i] << v[] << endl;}
+}
+cout << " ** " << nFE << " Nb err = "<< err<< " " << Wh.ndof << " errT =" << errT << endl; 
+errT += err;
+}
+// 
+
+mesh Th=square(1,1);
+
+{
+	fespace Vh(Th,P1bnc);
+	
+
+Vh u=x;
+
+for(int i=0; i< Vh.ndof;++i)
+{
+	u=0;
+	u[][i]=1;
+plot(u,wait=1,cmm="2d dof="+i,fill=1,dim=3);
+
+}
+varf vm(u,v)= int2d(Th,qforder=3)(u*v);
+matrix M=vm(Vh,Vh);
+//cout << M << endl; 
+}
+
+//	Test(Th,P1dcnc,"P1dcnc")
+Test(Th,P1dc,"P1dc")
+Test(Th,P1dc1,"P1dc1")
+Test(Th,P1bnc,"P1bnc")
+Test(Th,P1bdcnc,"P1bdcnc")
+
+mesh3 Th3=cube(1,1,1);
+
+Test(Th3,P1dc3d,"P1dc3d")
+Test(Th3,P1dc3d1,"P1dc3d1")
+
+
+meshS ThS=square3(1,1);
+fespace VhS(ThS,P1dcS);
+VhS uS=x;
+
+for(int i=0; i< VhS.ndof;++i) {
+	uS=0;
+	uS[][i]=1;
+plot(uS,wait=1,cmm="3d surf dof="+i,fill=1);
+}
+Test(ThS,P1dcS,"P1dcS")
+Test(ThS,P1dcS1,"P1dc1S")
+
+
+meshL ThL=Sline(10);
+Test(ThL,P1dcL,"P1dcL")
+Test(ThL,P1dcL1,"P1dc1L")
+
+
+
+assert(errT==0);

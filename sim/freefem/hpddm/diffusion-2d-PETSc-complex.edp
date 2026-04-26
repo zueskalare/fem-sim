@@ -1,0 +1,38 @@
+//  run with MPI:  ff-mpirun -np 4 script.edp
+// NBPROC 4
+
+load "PETSc-complex"                // PETSc plugin
+include "macro_ddm.idp"             // additional DDM functions
+
+macro grad(u)[dx(u), dy(u)]// EOM   // two-dimensional gradient
+func Pk = P1;                       // finite element space
+
+mesh Th = square(getARGV("-global", 40), getARGV("-global", 40)); // global mesh
+Mat<complex> A;
+macro ThRefinementFactor()getARGV("-split", 1)//
+MatCreate(Th, A, Pk);
+
+fespace Wh(Th, Pk);                 // local finite element space
+varf vPb(u, v) = int2d(Th)(1i*grad(u)' * grad(v)) + int2d(Th)(v) + on(1, u = 0.0);
+complex[int] rhs = vPb(0, Wh);
+
+set(A, sparams = "-ksp_view");
+Wh<complex> u;                      // local solution
+
+A = vPb(Wh, Wh);
+u[] = A^-1 * rhs;
+
+complex[int] err = A * u[];         // global matrix-vector product
+complex[int] transpose = A' * u[];
+exchange(A, rhs, scaled = true);
+err -= rhs;
+
+macro def(u)u//
+plotMPI(Th, u, Pk, def, complex, cmm = "Global solution");
+u[] = err;
+plotMPI(Th, u, Pk, def, complex, cmm = "Global residual");
+
+set(A, sparams = "-pc_type lu");
+u[] = 0.0;
+u[] = A^-1 * rhs;
+plotMPI(Th, u, Pk, def, complex, cmm = "Global solution");

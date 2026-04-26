@@ -1,0 +1,35 @@
+//  run with MPI:  ff-mpirun -np 4 script.edp
+// NBPROC 4
+
+load "PETSc"
+include "macro_ddm.idp"
+
+mesh ThNew, Th = square(getARGV("-global", 20), getARGV("-global", 20));
+{
+    int N = getARGV("-global", 20) / 2.0;
+    border a(t=0,1) { x=t;   y=0;   };
+    border b(t=0,1) { x=1;   y=t;   };
+    border c(t=0,1) { x=1-t; y=1;   };
+    border d(t=0,1) { x=0;   y=1-t; };
+    ThNew = buildmesh(a(N)+b(N)+c(N)+d(N));
+}
+macro ThRefinementFactor()getARGV("-first_split", 1)//
+macro ThNewRefinementFactor()getARGV("-second_split", 1)//
+DmeshCreate(Th);
+DmeshCreate(ThNew);
+plotDmesh(Th, cmm = "First mesh");
+plotDmesh(ThNew, cmm = "Second mesh");
+func Pk = P2;
+Mat A, B, P;
+MatCreate(Th, A, Pk);
+MatCreate(ThNew, B, Pk);
+MatInterpolate(ThNew, Pk, B, Th, Pk, A, P);
+
+macro grad(u)[dx(u), dy(u)]// EOM
+varf vPb(u, v) = int2d(Th)(grad(u)' * grad(v)) + int2d(Th)(v) + on(1, u = 0.0);
+fespace Vh(Th, Pk);
+A = vPb(Vh, Vh);
+Mat ANew;
+MatPtAP(A, P, ANew);
+ObjectView(A, format = "info");
+ObjectView(ANew, format = "info");

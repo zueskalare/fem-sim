@@ -1,0 +1,21 @@
+{
+  "case_script": "sim/freefem/examples/framework_smoke.edp",
+  "mesh": {
+    "nx": 14,
+    "ny": 10
+  },
+  "solver": {
+    "dt": 0.1,
+    "steps": 6
+  },
+  "parameters": {
+    "decay": 0.25
+  },
+  "outputs": {
+    "run_dir": "outputs/runs/framework-smoke",
+    "series_file": "outputs/runs/framework-smoke/series.tsv",
+    "mesh_file": "outputs/runs/framework-smoke/mesh.mesh",
+    "field_file": "outputs/runs/framework-smoke/trajectory.vtu",
+    "summary_file": "outputs/runs/framework-smoke/summary.tsv"
+  }
+}

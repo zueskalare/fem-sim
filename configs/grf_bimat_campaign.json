@@ -1,0 +1,22 @@
+{
+    "output_dir": "outputs/datasets/grf_bimat_v1",
+    "steps": 5,
+    "backend": "jaxfem",
+    "geometries": [
+        {"type": "grf_bimat", "h": 48, "w": 96, "seed": 0, "correlation_length": 3.0,  "volume_fraction": 0.5},
+        {"type": "grf_bimat", "h": 48, "w": 96, "seed": 1, "correlation_length": 6.0,  "volume_fraction": 0.5},
+        {"type": "grf_bimat", "h": 48, "w": 96, "seed": 2, "correlation_length": 12.0, "volume_fraction": 0.5},
+        {"type": "grf_bimat", "h": 48, "w": 96, "seed": 3, "correlation_length": 6.0,  "volume_fraction": 0.3},
+        {"type": "grf_bimat", "h": 48, "w": 96, "seed": 4, "correlation_length": 6.0,  "volume_fraction": 0.7},
+        {"type": "grf_bimat", "h": 48, "w": 96, "seed": 5, "correlation_length": 3.0,  "volume_fraction": 0.3},
+        {"type": "grf_bimat", "h": 48, "w": 96, "seed": 6, "correlation_length": 3.0,  "volume_fraction": 0.7},
+        {"type": "grf_bimat", "h": 48, "w": 96, "seed": 7, "correlation_length": 12.0, "volume_fraction": 0.3},
+        {"type": "grf_bimat", "h": 48, "w": 96, "seed": 8, "correlation_length": 12.0, "volume_fraction": 0.7},
+        {"type": "grf_bimat", "h": 48, "w": 96, "seed": 9, "correlation_length": 6.0,  "volume_fraction": 0.5}
+    ],
+    "load_cases": [
+        {"type": "cantilever_distributed", "load_mag": -5.0},
+        {"type": "cantilever_point_load",  "load_mag": -20.0, "load_pos": 1.0},
+        {"type": "top_load_fixed_bottom",  "load_mag": -2.0}
+    ]
+}

@@ -1,0 +1,59 @@
+/****************************************************************************/
+/* This file is part of FreeFEM.                                            */
+/*                                                                          */
+/* FreeFEM is free software: you can redistribute it and/or modify          */
+/* it under the terms of the GNU Lesser General Public License as           */
+/* published by the Free Software Foundation, either version 3 of           */
+/* the License, or (at your option) any later version.                      */
+/*                                                                          */
+/* FreeFEM is distributed in the hope that it will be useful,               */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of           */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            */
+/* GNU Lesser General Public License for more details.                      */
+/*                                                                          */
+/* You should have received a copy of the GNU Lesser General Public License */
+/* along with FreeFEM. If not, see <http://www.gnu.org/licenses/>.          */
+/****************************************************************************/
+// Your first program
+
+// Define a boundary
+border C(t=0, 2*pi){x=cos(t); y=sin(t);}
+
+// Build the mesh from boundary
+mesh Th = buildmesh(C(50));
+
+// Create a finite element space of order 2
+fespace Vh(Th, P2);
+// Defines u and v, piecewise-P2 continuous functions
+Vh u, v;
+
+// Define an algebraic function
+func f = x*y;
+
+real cpu = clock();
+
+// Define and solve a PDE
+solve Poisson(u, v, solver=LU)
+  = int2d(Th)(dx(u)*dx(v) + dy(u)*dy(v)) // bilinear part
+  - int2d(Th)(f*v) // right hand side
+  + on(C, u=0); // Dirichlet boundary condition
+
+// Plot the solution
+plot(u, wait=1, cmm="Solution");
+
+// Display the CPU time
+cout << " CPU time = " << clock()-cpu << endl;
+
+// FOR THE PRO: The same problem solved with total control over the algebra
+varf a(u, v) // the weak form
+  = int2d(Th)(dx(u)*dx(v) + dy(u)*dy(v))
+  + on(C, u=0);
+matrix A = a(Vh, Vh); // stiffness matrix
+
+varf b(u,v) = int2d(Th)(u*v);
+matrix B = b(Vh, Vh);
+
+Vh F = f;
+v[] = B*F[];
+u[] = A^-1*v[];
+plot(u, wait=1, cmm="PRO Solution");

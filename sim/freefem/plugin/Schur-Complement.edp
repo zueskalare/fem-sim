@@ -1,0 +1,126 @@
+//  example of using the Schur Complement. 
+// solve a Poisson problme on on symmetric domain with un hole
+// with constant Dichilet Boundary condition par  hole. 
+// but we only  just using half domain left Domain to buil matrix.
+
+// for ShurComplement  full matrix 
+load "lapack"
+// for ShurComplement  sparse matrix 
+load "Schur-Complement"
+
+include "ExtractDofsonBorder.idp"
+// for  to find dof with  Dirichet Boundary on l lablel 
+macro FindDofOnBorder(l,Vh,I)
+{
+	varf von(u,v) = on(l,u=-1);
+    int[int] J=0:Vh.ndof-1;
+	real[int] vl = von(0,Vh); 
+	sort(vl,J);
+	vl = vl ? 1. :0.;
+	int n = vl.sum+0.5; 
+
+	I.resize(n);
+	I=J(0:n-1);
+	if(verbosity) cout << " FindDofOnBorder:n = "<< n << endl; 
+}//
+
+if (HaveUMFPACK) //  need UMPACK  computation 
+{
+macro grad(u) [dx(u),dy(u)] //
+
+real hsize= 0.1; 
+real htt = max(hsize/2,0.1);
+mesh Th=square(2/hsize,1/hsize,[x*2,y]);
+
+Th=trunc(Th,(abs(x-1)>4*htt)||(abs(y-0.5)>htt),label=10);
+
+mesh Th2=movemesh(Th,[2-(x-2),y]);
+plot(Th,Th2,wait=1);
+fespace Vh(Th,P1);
+fespace Vh2(Th2,P1);
+int n = Vh.ndof;
+varf va(u,v) = int2d(Th)(grad(u)'*grad(v))+on(1,3,4,u=0);
+
+ matrix A= va(Vh,Vh,sym=0,tgv=-2);
+if(verbosity>9) cout << A << endl; 
+int[int] I; 
+ExtractDofsonBorder(2,Vh,I,1);
+
+real[int,int] B(1,1);
+
+//  model 2 
+int[int] I10;//list of  DoD  on label 10. (the hole) 
+FindDofOnBorder(10,Vh,I10);
+if(verbosity>9) cout << " I10 "<< I10 << endl; 
+int[int] If(n);
+int In=I.n; 
+If=-1;
+for [i,Ii:I]
+  If[Ii]=i; 
+for [i,I10i:I10]
+    If[I10i]=In; 
+if( verbosity>9) cout << If << endl; 	
+real[int,int] S(1,1);
+
+int nfs=SchurComplement(S,A,If,B);
+
+cout << nfs << " "<< In+1  << endl;
+if( verbosity>9)  cout << " S = "<<" " << S << endl;  
+/*
+In S  the dof are from 0 to  In-1 : right side 
+  number is    In =  Boundary condition on hole
+  PB build by symetry  so   solve  S(Il,Il)+S(Ir,Ir) 
+*/
+// compute the renumbing of left au right part Il,Ir
+// here the the DoF on hole will be differente on left   and  right  part. 
+int iclr=nfs; // DOF of B.C on  left part 
+int icll=nfs-1;// DOF of B.C on  right part 
+int iclS = nfs-1;
+int[int] Il=0:nfs;
+int[int] Ir=0:nfs;
+
+Ir[iclr]=iclS;
+Ir[icll]=-1;
+
+Il[iclr]=-1;
+Il[icll]=iclS;
+ 
+int nd = nfs+1;//   Number of Dof on full problem
+// need v4.3.2-177-g84744c98
+// missing in previoux version : FH: 31th july 2018 
+/*  version with sparse matrice
+matrix St(nd,nd);
+cout << " S ="<< S << endl;
+St+=S(Ir,Ir);//  right matrix
+St+=S(Il,Il);//  left  matrix
+*/
+// version with full matrix (need version after  4.4)
+real[int,int] St(nd,nd);
+St=0.;
+Add(St,S,Ir);
+Add(St,S,Il);
+cout << " St=" <<  St << endl; 
+cout << "ic  = "<< icll <<" " << iclr << endl; 
+int[int] It=[icll,iclr];
+real[int,int] SS(1,1), B0(1,1);
+int nfs0=SchurComplement(SS,St,It,B0);
+
+cout << "B0=" << B0 << endl; 
+// plot the solution on the 2  meshes. 
+for(int j=0; j<B0.m; ++j)
+{	
+	Vh ul=0;
+	Vh2 ur = 0; 
+	//  vertical Dof  left aund right part
+	for(int i=0; i<nfs-1; ++i)
+  	 ur[] +=  B(:,i)*B0(i,j);
+	for(int i=0; i<nfs-1; ++i)
+ 	 ul[] +=  B(:,i)*B0(i,j);
+	//  for DoF on Holes (left and right).   
+	{
+	  ur[] +=  B(:,nfs-1)*B0(nfs-1,j);
+	  ul[] +=  B(:,nfs-1)*B0(nfs,j);
+	 }   
+	plot(ul,ur, wait=1);
+}
+}

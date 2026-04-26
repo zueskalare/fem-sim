@@ -1,0 +1,52 @@
+//  run with MPI:  ff-mpirun -np 4 script.edp
+// NBPROC 4
+
+load "PETSc"
+load "hpddm_substructuring"         // HPDDM plugin
+include "macro_ddm_substructuring.idp" // additional DDM functions
+
+macro def(i)i// EOM                 // scalar field definition
+macro init(i)i// EOM                // scalar field initialization
+macro grad(u)[dx(u), dy(u)]// EOM   // two-dimensional gradient
+macro BC(u, val)u = val// EOM       // Dirichlet boundary conditions
+func Pk = P1;                       // finite element space
+
+int labNeumann = getARGV("-labNeumann", 2);                     // interface between subdomains
+int s = getARGV("-split", 1);                                   // refinement factor
+
+if(verbosity > 0 && mpirank == 0) {
+    cout << " --- " << mpirank << "/" << mpisize;
+    cout << " - diffusion-2d-substructuring-PETSc.edp - input parameters: refinement factor = " << s << endl;
+}
+
+mesh Th = square(1, 1);
+fespace Wh(Th, Pk);           // local finite element space
+int[int][int] intersection;   // local-to-neighbors renumbering
+int[int] interfaceNb;         //
+{
+    int[int] l = [2, 1, 2, 2];
+    Th = square(getARGV("-global", 40), getARGV("-global", 40), label = l);    // global mesh
+    buildSubstructuring(Th, interfaceNb, 10, 1, labNeumann, s, intersection, Pk, BC, mpiCommWorld, false)
+}
+
+func f = 10;
+varf vPb(u, v) = int2d(Th)(grad(u)' * grad(v)) + int2d(Th)(f * v) + on(1, u = 0.0);
+matrix<real> Loc = vPb(Wh, Wh, sym = 1, tgv = -2); // local operator
+real[int] rhs = vPb(0, Wh, tgv = -2);              // local right-hand side
+
+MatIS A(Loc, intersection, interfaceNb, communicator = mpiCommWorld);
+Wh<real> def(u) = 0.0;    // local solution
+
+int[int] numbering;
+GlobalNumbering(A, numbering);
+cout << "GlobalNumbering  " <<  numbering.n << " " << u[].n <<  endl; 
+for(int i = 0; i < u[].n; ++i)
+    u[][i] = numbering[i];
+OriginalNumbering(A, u[], interfaceNb);
+plotMPI(Th, u, Pk, def, real, cmm = "Global numbering");
+
+set(A, sparams = "-pc_type bddc -ksp_monitor");
+u[] = A^-1 * rhs;
+
+OriginalNumbering(A, u[], interfaceNb);
+plotMPI(Th, u, Pk, def, real, cmm = "Global solution");

@@ -1,0 +1,350 @@
+/* solves the 3D Helmholtz equation with finite-differences using the compact
+  wavelength-adaptive 27-point stencil from Aghamiry, H. S., Gholami, A.,
+  Combe, L., & Operto, S. (2022). Accurate 3D frequency-domain seismic wave
+  modeling with the wavelength-adaptive 27-point finite-difference stencil:
+  A tool for full-waveform inversion. Geophysics, 87(3), R305-R324.
+
+  Details about the GO_3D_OBS crustal geomodel can be found at https://www.geoazur.fr/WIND/bin/view/Main/Data/GO3DOBS
+  The velocity grid can be downloaded at https://www.geoazur.fr/WIND/pub/nfs/FWI-DATA/GO_3D_OBS/TARGET_PAPERS/v.bin
+  File 'Helmholtz_geophysics_rhs_pos.txt' contains the coordinates of the 130 right-hand sides representing a seabed node acquisition
+
+  For a simple test run at low frequency, run:
+
+  ff-mpirun -np 8 Helmholtz_geophysics.edp -ns -nw -frequency 0.3 -nppwl 4 -npml 4 -raspart -ffddm_overlap 3 -npmlprec 2 -tol 1e-4 -murhs 20 -maxrhs 20 -ffddm_verbosity 3
+
+  For a large-scale 3.75 Hz frequency simulation, run:
+
+  ff-mpirun -np 660 Helmholtz_geophysics.edp -ns -nw -frequency 3.75 -nppwl 4 -npml 8 -raspart -noGlob -ffddm_overlap 3 -npmlprec 2 -tol 1e-4 -maxit 150 -ffddm_gmres_restart 150 -murhs 20 -maxrhs 130 -ffddm_verbosity 3
+*/
+
+macro FDsimulation()1//
+//macro FEsimulation()1// uncomment to perform FE simulation
+
+load "Helmholtz_FD" // plugin implementing the 27-point FD stencil
+load "geophysics" // for loading velocity grids of the geomodels
+
+load "parmmg" // for parallel mesh adaption
+load "Element_P3" // plugin for P3 finite elements
+load "qf11to25" // high order quadrature rules
+
+include "cube.idp"
+include "getARGV.idp"
+
+macro dimension 3//EOM
+include "ffddm.idp"
+
+real lengthx = 102; //the metric unit is the kilometer
+real lengthy = 20;
+real depth = 28.3;
+
+int[int] npmlg(6);
+
+real freq = getARGV("-frequency",1.); // frequency
+real nppwl = getARGV("-nppwl",4.); // number of points per wavelength
+npmlg = getARGV("-npml",8); // number of points in the global PMLs
+
+int npmli = getARGV("-npmlprec",2); // number of points in local PMLs for the preconditioner
+
+int maxit = getARGV("-maxit",400); // maximum number of GMRES iterations for finite differences
+real gmrestol = getARGV("-tol",1e-4); // GMRES relative stopping criterion
+
+int maxrhs = getARGV("-maxrhs",130); // total number of RHSs to treat
+int murhs = getARGV("-murhs",20); // RHSs are treated by blocks of nrhs
+
+int split = getARGV("-split",2); // splitting ratio for the coarse mesh for finite elements
+int maxitFE = getARGV("-maxitFE",30); // maximum number of outer GMRES iterations for finite elements
+
+func PkFE = P2; // P2 or P3 finite elements
+macro mqfV()qfVp7//EOM // order 7 quadrature rule for finite elements
+
+// point source coordinates for the single RHS case
+real xs = 12.3;
+real ys = 10.5;
+real zs = -0.9;
+
+// file containing the positions of the 130 RHSs mimicking a sparse seabed node acquisition
+ifstream f("Helmholtz_geophysics_rhs_pos.txt");
+
+complex omega = 2.*pi*freq;
+real c0 = 1.5; // reference (minimum) velocity
+real lambda = (1./freq)*c0;
+real h = lambda/nppwl;
+
+if (mpirank == 0) cout << "lambda = " << lambda << ", h = " << h << endl;
+
+// dimensions must be multiples of h
+lengthx = h*floor(lengthx/h);
+lengthy = h*floor(lengthy/h);
+depth = h*floor(depth/h);
+
+real[int]bounds = [0,lengthx,0,lengthy,-depth,0];
+Crustal crust("v.bin",bounds); // load the GO_3D_OBS crustal geomodel
+func c = crust(x,y,z)/1000;
+func mu = c^2;
+
+real[int] lengthpml(6); // length of the global PMLs
+for (int i=0; i<6; i++) lengthpml[i] = npmlg[i]*lambda/nppwl;
+
+macro def(u)u//EOM
+macro init(u)u//EOM
+
+/***********************************************************************/
+/*************************  FINITE DIFFERENCES  ************************/
+/***********************************************************************/
+IFMACRO(FDsimulation)
+
+real nloc = nppwl/ffddmsplit*lengthx/lambda;
+
+int nplx = rint(nloc*(lengthx+lengthpml[0]+lengthpml[1])/lengthx);
+int nply = rint(nloc*(lengthy+lengthpml[2]+lengthpml[3])/lengthx);
+int npd = rint(nloc*(depth+lengthpml[4]+lengthpml[5])/lengthx);
+
+int[int] N = [nplx,nply,npd];
+real[int,int] Bounds = [[-lengthpml[0],lengthx+lengthpml[1]], [-lengthpml[2],lengthy+lengthpml[3]], [-depth-lengthpml[4],lengthpml[5]]];
+int[int,int] Labels = [[11,12],[13,14],[15,16]];
+
+/* partition the domain into overlapping cubic subdomains */
+ffddmbuildDmeshpartcubesauto(FDmesh,N,Bounds,Labels,mpiCommWorld)
+
+if (mpirank == 0) cout << "grid size " << nplx+1 << " x " << nply+1 << " x " << npd+1 << endl;
+
+/* define the distributed nodal discretization space */
+ffddmbuildDfespace(FDspace,FDmesh,complex,def,init,P1)
+
+//////////// *********** BUILD LOCAL MATRICES *********** ////////////
+
+macro FDmyOperator(matName, meshName, VhName)
+/* build local matrices A_i for the matrix-vector product */
+int[int] labs = labels(meshName);
+
+int[int] pmls(6);
+pmls = -1; /* Dirichlet BC */
+
+for (int i=0; i<labs.n; i++)
+if (labs[i] >= 11 && labs[i] <= 16)
+  pmls[labs[i]-11] = npmlg[labs[i]-11]; /* global PML boundaries */
+matName = HelmholtzFD(meshName,omega,mu,npml=pmls);
+//EOM
+
+macro FDmyPrecond(matName, meshName, VhName)
+/* build local matrices B_i for the preconditioner */
+int[int] labs = labels(meshName);
+
+int[int] pmls(6);
+pmls = npmli; /* local PMLs */
+
+for (int i=0; i<labs.n; i++)
+if (labs[i] >= 11 && labs[i] <= 16)
+  pmls[labs[i]-11] = npmlg[labs[i]-11]; /* global PML boundaries */
+matName = HelmholtzFD(meshName,omega,mu,npml=pmls);
+//EOM
+
+macro FDwithhpddm()1//EOM
+
+ffddmprecond = "oras";
+/* define operator (build A_i) */
+ffddmsetupOperator(FD,FDspace,null)
+/* define preconditioner (build B_i) */
+ffddmsetupPrecond(FD,null)
+
+// set BLR parameters for local solver MUMPS
+set(FDhpddmOP,sparams="-hpddm_FD_mumps_icntl_35 2 -hpddm_FD_mumps_cntl_7 1e-3 -hpddm_FD_mumps_icntl_37 0 -hpddm_FD_mumps_icntl_36 1");
+
+// use GMRES with Classical Gram-Schmidt orthogonalization
+set(FDhpddmOP,sparams="-hpddm_FD_reuse_preconditioner 1 -hpddm_FD_orthogonalization cgs -hpddm_FD_krylov_method gmres");
+
+//////////// ***********  BUILD RIGHT-HAND SIDES  *********** ////////////
+//////////// *********** SOLVE THE LINEAR SYSTEMS *********** ////////////
+
+FDspaceVhi<complex> u, rhs;
+
+int irhs = 0;
+
+if (FDmeshisincomm)
+while (irhs < maxrhs) {
+  int mu = min(murhs, maxrhs-irhs); // number of treated RHSs for this block
+
+  complex[int] brhs(FDspaceVhi.ndof*mu); // local RHSs
+
+  /* assemble the mu RHSs */
+  for (int i = 0; i < mu; i++) {
+    if (murhs > 1) { // read RHS position in the file
+      f >> zs; zs /= -1000; zs = h*rint(zs/h); // closest FD grid point to source position
+      f >> xs; xs /= 1000; xs = h*rint(xs/h);
+      f >> ys; ys /= 1000; ys = h*rint(ys/h);
+    }
+    irhs++;
+
+    /* tag the source node */
+    rhs = 0;
+    for (int i=0; i<FDmeshThi.nv; i++)
+    if ((FDmeshThi(i).x-xs)^2+(FDmeshThi(i).y-ys)^2+(FDmeshThi(i).z-zs)^2 < 1e-3*h)
+      rhs[][i] = -1./h^2;
+
+    brhs(i*FDspaceVhi.ndof:(i+1)*FDspaceVhi.ndof-1) = rhs[];
+  }
+
+  complex[int] bu(FDspaceVhi.ndof*mu); // local solutions
+  bu = 0; // 0 initial guess
+
+  /* solve the linear systems */
+  bu = FDfGMRES(bu, brhs, gmrestol, maxit, "right");
+
+  u[] = bu(0:FDspaceVhi.ndof-1); // save the first solution for export
+  u = u*sqrt((x-xs)^2+(y-ys)^2+(z-zs)^2); // scale with distance to source for visualization
+}
+
+FDwritesummary
+
+/* export a solution to parallel vtu format */
+if (FDmeshisincomm) {
+  load "PETSc-complex"
+  func pml = (x>=lengthx)+(x<=0)+(y>=lengthy)+(y<=0)+(z>=0)+(z<=-depth);
+  //FDmeshThi = trunc(FDmeshThi,pml==0); // remove PML region
+  FDspaceVhi ur = (!pml)*real(u), ui = (!pml)*imag(u);
+  int[int] fforder = [1,1];
+  savevtk("GO_3D_OBS_FD.vtu", FDmeshThi, ur, ui, dataname = "u ui", order=fforder, communicator=FDmeshcommddm);
+  if (mpirank == 0) cout << "Solution saved: " << "GO_3D_OBS_FD_"+mpiSize(FDmeshcommddm)+".pvd" << endl;
+}
+ENDIFMACRO
+
+/***********************************************************************/
+/**************************  FINITE ELEMENTS  **************************/
+/***********************************************************************/
+IFMACRO(FEsimulation)
+{
+ffddmoverlap = 1;
+
+real nloc = nppwl/ffddmsplit*lengthx/lambda/split;
+
+int nplx = rint(nloc*(lengthx+lengthpml[0]+lengthpml[1])/lengthx);
+int nply = rint(nloc*(lengthy+lengthpml[2]+lengthpml[3])/lengthx);
+int npd = rint(nloc*(depth+lengthpml[4]+lengthpml[5])/lengthx);
+
+int[int] N=[nplx,nply,npd];
+real [int,int] B=[[-lengthpml[0],lengthx+lengthpml[1]],[-lengthpml[2],lengthy+lengthpml[3]],[-depth-lengthpml[4],lengthpml[5]]];
+int [int,int] L=[[11,12],[13,14],[15,16]];
+
+mesh3 Th = Cube(N,B,L);
+
+/* mesh adaptation */
+for (int i=0; i<3; i++) {
+  fespace Uh(Th,P1);
+  Uh met = (1./freq)*real(c)/nppwl*split;
+  Th = parmmg3d(Th,metric=met[],hgrad=3,verbose=1,mem=16000);
+}
+
+ffddmbuildDmeshNested(FEmesh,Th,split,mpiCommWorld)
+
+/* clear memory */
+Th = cube(1,1,1);
+
+func k = omega/c;
+
+real epst = 1e-10;
+func sigmax = ((x>=lengthx)/max(epst,(lengthx+lengthpml[1]-x))  +  (x<=0)/max(epst,(x + lengthpml[0])))/real(k);
+func sigmay = ((y>=lengthy)/max(epst,(lengthy+lengthpml[3]-y))  +  (y<=0)/max(epst,(y + lengthpml[2])))/real(k);
+func sigmaz = ((z>=0)/max(epst,(lengthpml[5]-z))  +  (z<=-depth)/max(epst,(z+depth + lengthpml[4])))/real(k);
+
+macro Grad(u) [dx(u),dy(u),dz(u)] //EOM
+macro Gradpml(u) [(1.-1i*sigmay)*(1.-1i*sigmaz)/(1.-1i*sigmax)*dx(u),
+                  (1.-1i*sigmax)*(1.-1i*sigmaz)/(1.-1i*sigmay)*dy(u),
+                  (1.-1i*sigmax)*(1.-1i*sigmay)/(1.-1i*sigmaz)*dz(u)] //EOM
+
+macro Varf(varfName, meshName, PhName)
+  varf varfName(u,v) = int3d(meshName,qfV=mqfV)(-(k^2*(1+1i*sigmax)*(1+1i*sigmay)*(1+1i*sigmaz))*u*v+Gradpml(u)'*Grad(v))
+                     + on(11,12,13,14,15,16,u=0);
+//EOM
+
+// for the preconditioner
+macro VarfOpt(varfName, meshName, PhName)
+  varf varfName(u,v) = int3d(meshName,qfV=mqfV)(-(k^2*(1+1i*sigmax)*(1+1i*sigmay)*(1+1i*sigmaz))*u*v+Gradpml(u)'*Grad(v))
+                     - int2d(meshName,10)(1i*k*(1+1i*sigmax)*(1+1i*sigmay)*(1+1i*sigmaz)*u*v)
+                     + on(11,12,13,14,15,16,u=0);
+//EOM
+
+macro Varfrhs(varfName, meshName, PhName)
+  func source = exp(-0.5/(h/8)^2*((x-xs)^2+(y-ys)^2+(z-zs)^2)) / pow(2*pi*(h/8)^2,3./2.);
+  varf varfName(u,v) = int3d(meshName,qfV=mqfV)(source*v)
+                     + on(11,12,13,14,15,16,u=0);
+//EOM
+
+ffddmbuildDfespace(FEs,FEmesh,complex,def,init,PkFE)
+ffddmbuildDfespace(FEsCoarse,FEmeshCoarse,complex,def,init,PkFE)
+
+vsym = 2; // matrices are symmetric, not hermitian
+vtgv = vtgvelim = -2;
+
+ffddmprecond = "oras";
+
+macro FEwithhpddm()1//
+macro FECoarsewithhpddm()1//
+
+ffddmsetupOperator(FECoarse,FEsCoarse,Varf)
+
+ffddmsetupOperator(FE,FEs,Varf)
+
+ffddmset(FE,verbosity,3)
+ffddmset(FECoarse,verbosity,1)
+
+ffddmsetupPrecond(FECoarse,VarfOpt)
+
+ffddmsetupPrecond(FE,VarfOpt)
+
+ffddmcoarsemeshsetup(FE,Th,Varf,null)
+
+// set BLR parameters for local solver MUMPS
+set(FECoarsehpddmOP,sparams="-hpddm_FECoarse_mumps_icntl_35 2 -hpddm_FECoarse_mumps_cntl_7 1e-3 -hpddm_FECoarse_mumps_icntl_37 0 -hpddm_FECoarse_mumps_icntl_36 1");
+set(FEhpddmOP,sparams="-hpddm_FE_mumps_icntl_35 2 -hpddm_FE_mumps_cntl_7 1e-3 -hpddm_FE_mumps_icntl_37 0 -hpddm_FE_mumps_icntl_36 1");
+
+// use GMRES with Classical Gram-Schmidt orthogonalization
+set(FECoarsehpddmOP,sparams="-hpddm_FECoarse_reuse_preconditioner 1 -hpddm_FECoarse_orthogonalization cgs -hpddm_FECoarse_krylov_method gmres");
+set(FEhpddmOP,sparams="-hpddm_FE_reuse_preconditioner 1 -hpddm_FE_orthogonalization cgs -hpddm_FE_krylov_method gmres");
+
+int irhs = 0;
+
+FEsVhi<complex> u, rhs;
+
+ifstream f("Helmholtz_geophysics_rhs_pos.txt");
+while (irhs < maxrhs) {
+  int mu = min(murhs, maxrhs-irhs); // number of treated RHSs for this block
+
+  complex[int] brhs(FEsVhi.ndof*mu); // local RHSs
+
+  /* assemble the mu RHSs */
+  for (int i = 0; i < mu; i++) {
+    if (murhs > 1) { // read RHS position in the file
+      f >> zs; zs /= -1000; zs = h*rint(zs/h); // closest FD grid point to source position
+      f >> xs; xs /= 1000; xs = h*rint(xs/h);
+      f >> ys; ys /= 1000; ys = h*rint(ys/h);
+    }
+    irhs++;
+
+    ffddmbuildrhs(FE,Varfrhs,rhs[])
+    brhs(i*FEsVhi.ndof:(i+1)*FEsVhi.ndof-1) = rhs[];
+  }
+
+  complex[int] bu(FEsVhi.ndof*mu); // local solutions
+  bu = 0; // 0 initial guess
+
+  /* solve the linear systems */
+  bu = FEfGMRES(bu, brhs, gmrestol, maxitFE, "right");
+
+  u[] = bu(0:FEsVhi.ndof-1); // save the first solution for export
+  u = u*sqrt((x-xs)^2+(y-ys)^2+(z-zs)^2); // scale with distance to source for visualization
+}
+
+FECoarsewritesummary
+FEwritesummary
+
+/* export a solution to parallel vtu format */
+load "PETSc-complex"
+func pml = (x>=lengthx)+(x<=0)+(y>=lengthy)+(y<=0)+(z>=0)+(z<=-depth);
+//FEmeshThi = trunc(FEmeshThi,pml==0); // remove PML region
+FEmeshThi = trunc(FEmeshThi,1,split=2);
+FEsVhi ur = (!pml)*real(u), ui = (!pml)*imag(u);
+int[int] fforder = [1,1];
+savevtk("GO_3D_OBS_FE.vtu", FEmeshThi, ur, ui, dataname = "u ui", order=fforder);
+if (mpirank == 0) cout << "Solution saved: " << "GO_3D_OBS_FE_"+mpisize+".pvd" << endl;
+}
+ENDIFMACRO

@@ -1,0 +1,45 @@
+# Square 2D bimaterial characterization dataset.
+#
+# Each microstructure (3 GRF realizations) is exercised through 8 standard
+# characterization modes:
+#   1. Uniaxial tension in x
+#   2. Uniaxial compression in x
+#   3. Uniaxial tension in y
+#   4. Uniaxial compression in y
+#   5. Simple shear (top slides in x relative to fixed bottom)
+#   6. Simple shear (right slides in y relative to fixed left)
+#   7. Equi-biaxial tension
+#   8. Equi-biaxial compression
+#
+# 3 geometries × 8 load cases = 24 samples.
+#
+# Units: MPa-mm-ms (E in MPa, density in Mg/mm^3).  TPU/PLA contrast is
+# ~100×, which produces strong stress-concentration features for ML training.
+
+output_dir: outputs/datasets/bimat_characterization
+backend: jaxfem
+steps: 5
+
+materials:
+  TPU: {E: 30.0,    nu: 0.48, rho: 1.2e-9}
+  PLA: {E: 3500.0,  nu: 0.36, rho: 1.24e-9}
+
+geometries:
+  - {type: grf_bimat, h: 64, w: 64, seed: 0, correlation_length: 6.0,  volume_fraction: 0.5, materials: [TPU, PLA]}
+  - {type: grf_bimat, h: 64, w: 64, seed: 1, correlation_length: 12.0, volume_fraction: 0.5, materials: [TPU, PLA]}
+  - {type: grf_bimat, h: 64, w: 64, seed: 2, correlation_length: 6.0,  volume_fraction: 0.3, materials: [TPU, PLA]}
+
+load_cases:
+  # Uniaxial — sign of disp_mag selects tension vs compression
+  - {type: uniaxial, disp_mag:  0.01, direction: x}   # tension x
+  - {type: uniaxial, disp_mag: -0.01, direction: x}   # compression x
+  - {type: uniaxial, disp_mag:  0.01, direction: y}   # tension y
+  - {type: uniaxial, disp_mag: -0.01, direction: y}   # compression y
+
+  # Simple shear — both orientations
+  - {type: shear,    disp_mag:  0.01, direction: x}   # top slides +x
+  - {type: shear,    disp_mag:  0.01, direction: y}   # right slides +y
+
+  # Biaxial — sign of each axis selects tension/compression independently
+  - {type: biaxial,  disp_x:  0.01, disp_y:  0.01}    # equi-biaxial tension
+  - {type: biaxial,  disp_x: -0.01, disp_y: -0.01}    # equi-biaxial compression

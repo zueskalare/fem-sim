@@ -1,0 +1,91 @@
+//  run with MPI:  ff-mpirun -np 4 script.edp
+// NBPROC 4
+// PARAM
+
+load "bem"
+load "PETSc-complex"
+include "macro_ddm.idp"
+
+if(!HasType("Mat", "Htool")) exit(0);
+
+complex k     = getARGV("-k", 10.0);
+
+// incident wave
+real[int] dir = [1,0];
+func finc     = exp(1i*k*(dir[0]*x + dir[1]*y));
+int n         = 1000;
+func Pk       = P1;
+func Qk       = P1;
+
+border circle(t=0, 2*pi) { x=cos(t); y=sin(t); z=0; }
+meshL ThL = buildmeshL(circle(n));
+ThL = OrientNormal(ThL, unbounded = 1);
+meshL ThG = ThL;
+int[int] n2o;
+macro ThLN2O()n2o//
+
+fespace UhL(ThL, Pk);
+fespace UhG(ThG, Pk);
+varf vk(u, v) = int1dx1d(ThG)(ThG)(BEM(BemKernel("SL",k=k), u, v));
+Mat<complex> H, MatT, MatV;
+{
+macro dimension()3// EOM
+macro meshtype()L// EOM
+MatCreate(ThL, H, Pk);
+MatCreate(ThL, MatT, P0);
+MatCreate(ThL, MatV, P1);
+}
+CoherentGlobalMesh(MatT, MatV, ThL, ThG);
+MatDestroy(MatT);
+MatDestroy(MatV);
+H = vk(UhG, UhG, sparams = "-mat_htool_epsilon 1.0e-2", sym = 1);
+bool mass = usedARGV("-mass") != -1;
+matrix<complex> M;
+if(mass) {
+    varf vM(u, v) = int1d(ThL)(u * v);
+    M = vM(UhL, UhL);
+}
+
+varf vRHS(u, v) = -int1d(ThL)(finc*v);
+
+UhL<complex> bf;
+bf[] = vRHS(0, UhL);
+if(mass) {
+    set(H, sparams = "-ksp_view_singularvalues -ksp_converged_reason -ksp_gmres_restart 1000 -pc_type asm", O = M);
+}
+complex[int] u = H^-1 * bf[];
+// visualization
+if(!NoGraphicWindow) {
+    int np = 200;
+    int R = 4;
+
+    border b1(t=-R, R) { x = t ; y = -R; }
+    border b2(t=-R, R) { x = R ; y = t; }
+    border b3(t=-R, R) { x = -t; y = R; }
+    border b4(t=-R, R) { x = -R; y = -t; }
+    border circleout(t=0, 2*pi){x=1.1*cos(t); y=1.1*sin(t); z=0;}
+
+    mesh ThOutG = buildmesh(b1(np) + b2(np) + b3(np) + b4(np) + circleout(-np*pi/R));
+    mesh ThOutL = ThOutG;
+    int[int] n2o;//
+    macro ThOutLN2O()n2o//
+    Mat<complex> B;
+    MatCreate(ThOutL, B, Qk);
+    MatCreate(ThOutL, MatT, P0);
+    MatCreate(ThOutL, MatV, P1);
+    CoherentGlobalMesh(MatT, MatV, ThOutL, ThOutG);
+    MatDestroy(MatT);
+    MatDestroy(MatV);
+    fespace UhOutG(ThOutG, Qk);
+    fespace UhOutL(ThOutL, Qk);
+    varf vp(u, v) = int1d(ThG)(POT(BemPotential("SL", k=k), u, v));
+    Mat<complex> HPot(B, H);
+    HPot = vp(UhG, UhOutG, sparams = "-mat_htool_epsilon 1.0e-4");
+    ObjectView(HPot);
+    UhOutL<complex> v, vinc;
+    vinc = finc;
+    v[] = HPot*u;
+    v[] += vinc[];
+    UhOutL vr = abs(v);
+    plotMPI(ThOutL, vr, P1, def, real, cmm = "Global first kind solution");
+}

@@ -1,0 +1,62 @@
+//  run with MPI:  ff-mpirun -np 4 script.edp
+// NBPROC 4
+
+load "PETSc"
+load "mmg"
+load "Element_P4"
+load "Element_P3"
+macro def1(u)u//
+
+int[int] fforder = [1];
+{
+    func Pk = P4;                       // finite element space
+    func PkNew = P3;                    // finite element space
+
+    include "macro_ddm.idp"             // additional DDM functions
+    mesh ThNew, Th = square(getARGV("-global_2d", 20), getARGV("-global_2d", 20)); // global mesh
+    {
+        int N = 80;
+        border a(t=0,1) { x=t;   y=0;   };
+        border b(t=0,1) { x=1;   y=t;   };
+        border c(t=0,1) { x=1-t; y=1;   };
+        border d(t=0,1) { x=0;   y=1-t; };
+        ThNew = buildmesh(a(N)+b(N)+c(N)+d(N));
+    }
+    DmeshCreate(Th);
+    DmeshCreate(ThNew);
+    fespace Vh(Th, Pk);
+    fespace VhNew(ThNew, PkNew);
+    Vh u = cos(8*pi*x) * sin(8*pi*y);
+    VhNew uNew;
+    VecInterpolate(Th, Pk, u, ThNew, PkNew, uNew);
+    plotMPI(Th, u, Pk, def1, real, cmm = "Old FE function");
+    plotMPI(ThNew, uNew, PkNew, def1, real, cmm = "New FE function");
+    savevtk("transfer_2d.vtu", Th, u, order = fforder);
+    savevtk("transfer_2d.vtu", ThNew, uNew, order = fforder, append = true);
+}
+{
+    func PkSingle = P3;
+    func Pk = [PkSingle, PkSingle];          // finite element space
+    func PkNewSingle = P2;
+    func PkNew = [PkNewSingle, PkNewSingle]; // finite element space
+
+    macro dimension()3// EOM            // 2D or 3D
+    macro def(u)[u, u#B]//
+    macro init(u)[u, u]//
+    include "macro_ddm.idp"             // additional DDM functions
+    mesh3 ThNew, Th = cube(getARGV("-global_3d", 5), getARGV("-global_3d", 5), getARGV("-global_3d", 5)); // global mesh
+    if(mpirank == 0)
+        ThNew = mmg3d(Th, hmax = 8.0e-2);
+    broadcast(processor(0), ThNew);
+    DmeshCreate(Th);
+    DmeshCreate(ThNew);
+    fespace Vh(Th, Pk);
+    fespace VhNew(ThNew, PkNew);
+    Vh def(u) = [cos(2*pi*x) * sin(2*pi*y) * cos(2*pi*z), cos(2*pi*z)];
+    VhNew def(uNew);
+    VecInterpolate(Th, Pk, u, ThNew, PkNew, uNew);
+    plotMPI(Th, def1(u), PkSingle, def1, real, cmm = "Old FE function");
+    plotMPI(ThNew, def1(uNew), PkNewSingle, def1, real, cmm = "New FE function");
+    savevtk("transfer_3d.vtu", Th, u, order = fforder);
+    savevtk("transfer_3d.vtu", ThNew, uNew, order = fforder, append = true);
+}

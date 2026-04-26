@@ -1,0 +1,157 @@
+// This codes shows how to calculate the eigenvalue spectrum of
+// the Laplace operator on a 2d square domain, using SLEPc.
+//
+// Usage :
+// mpirun -np 4 FreeFem++-mpi -wg laplace-2d-SLEPc.edp \
+//        -split 1 -npts 400 -nev 10 -sigma 0.0
+//
+// Authors: Julien Garaud <julien.garaud@gmail.com>
+//          Pierre Jolivet <pierre.jolivet@enseeiht.fr>
+
+/**************************************/
+/*     Load PETSc & SLEPc macros      */
+/**************************************/
+load "PETSc"                             // PETSc plugin
+macro dimension(      )2// End Of Macro  // 2D or 3D
+include "macro_ddm.idp"                  // Additional DDM functions
+macro def(i)i// EOM
+macro init(i)i// EOM
+
+func Pk = P1;                    // Finite-element space
+
+/***************************************/
+/*    Options for distributed solver   */
+/***************************************/
+int s      = getARGV("-split", 1)   ; // Refinement factor
+//
+int Npts   = getARGV("-npts" , 200) ; // Number of points on the perimeter
+real Lx    = getARGV("-lx"   , pi)  ; // Dimension of the domain
+real Ly    = getARGV("-ly"   , pi)  ; // Dimension of the domain
+//
+int nEV    = getARGV("-nev"  , 10)  ; // Number of eigenvalues
+real sigma = getARGV("-sigma", 0.0) ; // Shift
+/***************************************/
+/*     Verbosity and passed options    */
+/***************************************/
+if(verbosity > 0 && mpirank == 0) {
+    cout << "********************************************"  << endl
+        << " --- " << mpirank << "/" << mpisize
+        << "- laplace-2d-SLEPc.edp "     << endl
+        << "********************************************"  << endl
+        << "- input parameters: "                          << endl
+        << "  refinement factor  = " << s                  << endl
+        << "********************************************"  << endl
+        << "  nb of pts on perimeter = " << Npts
+        << "  Domain size [Lx,Ly]    = ["<<Lx<<","<<Ly<<"]"<< endl
+        << "********************************************"  << endl
+        << "  nb of eigenvalues  = " << nEV                << endl
+        << "  value of the shift = " << sigma              << endl
+        << "********************************************"  << endl
+        << endl;
+}
+/***************************************/
+/*   ###############################   */
+/***************************************/
+mesh Th = square(1, 1);      // Local mesh
+int[int][int] intersection;   // Local-to-neighbors renumbering
+real[int] D;                  // Partition of unity
+
+/***************************************/
+/*         Finite Element space        */
+/***************************************/
+// Definition of the finite element space on the domain Th
+// P1 are the first order Lagrange elements
+fespace Vh(Th, Pk);      // local finite element space
+
+/***************************************/
+/*         Geometry parameters         */
+/***************************************/
+int[int] Labels=[1,2,3,4]; // labels : bottom, right, top, left sides
+
+/***************************************/
+/*            ##############           */
+/***************************************/
+{ // Construction of the rectangular domain
+    int Xpts= int(0.5*Npts*Lx/(Lx+Ly)); // pts on the x-axis sides
+    int Ypts= int(0.5*Npts*Ly/(Lx+Ly)); // pts on the y-axis sides
+
+    Th = square(Xpts,Ypts,[Lx*(x-0.5),Ly*(y-0.5)],label=Labels);
+    // .....
+    build(Th,       // The local mesh
+            s,        // Refinement factor
+            intersection, // local-to-neighbors renumbering
+            D,        // partition of unity
+            Pk,           // FE-space
+            mpiCommWorld // Communicator
+         );
+}
+/***************************************/
+/*          Problem parameters         */
+/***************************************/
+
+/***************************************/
+/*          Problem definition         */
+/***************************************/
+varf vA(uh,vh)= int2d(Th)        //  Definion of  the problem
+( dx(uh)*dx(vh)+dy(uh)*dy(vh)  )//  Bilinear form
+;
+
+varf vB(uh,vh)= int2d(Th)  //  Definion of  the problem
+( uh*vh )               //  Bilinear form
+;
+
+matrix<real> A = vA(Vh,Vh);
+matrix<real> B = vB(Vh,Vh);
+/***************************************/
+/*      Build distributed matrices     */
+/***************************************/
+Mat DistA(A, intersection, D, clean = true);
+Mat DistB(DistA, B, clean = true);
+
+real[int, int] space(DistA.n, 1);
+space = 1;
+
+/***************************************/
+/*          Problem resolution         */
+/***************************************/
+real[int]     EigenVAL(0);       // array to store eigenvalues
+Vh<real>[int] def(EigenVEC)(1);  // array to store eigenvectors
+string ssparams =            // Parameters for the distributed EigenValue solver
+  " -eps_nev " + nEV       + // Number of eigenvalues
+  " -eps_type krylovschur" +
+  " -eps_target "+ sigma   + // Shift value
+  " -st_type sinvert "     +
+  " -st_pc_type lu "       +
+  " -eps_view"             +
+  " -eps_view_values"             +
+  " -eps_gen_nonhermitian"      // The problem is symmetric
+  ;
+
+int k = EPSSolve
+(DistA,              // matrix OP = A − sigma*B
+ DistB,              //
+ vectors = EigenVEC, // Array to store the FEM-EigenFunctions
+ // values  = EigenVAL, // Array to store the EigenValues
+ sparams = ssparams, // Parameters for the distributed EigenValue solver
+ deflation = space
+);
+
+k=min(k,nEV); // some time the number of converged eigen value
+              // can be greater than nev;
+/***************************************/
+/*           View the solution         */
+/***************************************/
+Vh<real> Temp;
+
+if(0)
+for(int i=0;i<k;i++){
+    if(!mpirank) cout << " Eigenvalue #"+i+" = "+EigenVAL[i]<<endl;
+    Temp = EigenVEC[i];
+    plotMPI(Th,     // The local mesh
+            Temp,   // The local solution
+            Pk,     // Local FE-space
+            def,    // Macro for field definition
+            real,   // Type
+            cmm = "Psi("+i+")  EV = "+EigenVAL[i]
+           )
+}

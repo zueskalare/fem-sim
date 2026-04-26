@@ -1,0 +1,16 @@
+{
+    "output_dir": "outputs/datasets/elasticity2d_v1",
+    "steps": 10,
+    "geometries": [
+        {"type": "rectangle", "h": 16, "w": 32, "E": 210000, "nu": 0.3, "rho": 7800},
+        {"type": "rectangle", "h": 16, "w": 32, "E": 70000, "nu": 0.33, "rho": 2700},
+        {"type": "rectangle", "h": 32, "w": 64, "E": 210000, "nu": 0.3, "rho": 7800},
+        {"type": "plate_with_hole", "h": 32, "w": 32, "cx": 0.5, "cy": 0.5, "r": 0.15, "E": 210000, "nu": 0.3, "rho": 7800},
+        {"type": "bimat_rectangle", "h": 16, "w": 32, "split_frac": 0.5, "E1": 210000, "E2": 70000}
+    ],
+    "load_cases": [
+        {"type": "cantilever_point_load", "load_mag": -1000, "load_pos": 1.0},
+        {"type": "cantilever_distributed", "load_mag": -500},
+        {"type": "displacement_bc", "disp_mag": 0.01}
+    ]
+}

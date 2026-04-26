@@ -1,0 +1,79 @@
+// file tetgencube.edp
+load "tetgen"
+load "medit"
+
+real x0,x1,y0,y1;
+x0=1.; x1=2.; y0=0.; y1=2*pi;
+mesh Thsq1 = square(5,35,[x0+(x1-x0)*x,y0+(y1-y0)*y]);
+
+func ZZ1min = 0;
+func ZZ1max = 1.5;
+func XX1 = x;
+func YY1 = y;
+
+int[int] ref31h = [0,12];
+int[int] ref31b = [0,11];
+
+meshS Th31h = movemesh23(Thsq1,transfo=[XX1,YY1,ZZ1max],region=ref31h,orientation=1);
+savemesh(Th31h,"Th31h.mesh");
+meshS Th31b = movemesh23(Thsq1,transfo=[XX1,YY1,ZZ1min],region=ref31b,orientation=-1);   
+
+
+/////////////////////////////////
+x0=1.; x1=2.; y0=0.; y1=1.5;
+mesh Thsq2 = square(5,8,[x0+(x1-x0)*x,y0+(y1-y0)*y]);
+
+func ZZ2 = y;
+func XX2 = x;
+func YY2min = 0.;
+func YY2max = 2*pi;
+
+int[int] ref32h = [0,13];
+int[int] ref32b = [0,14];
+
+meshS Th32h = movemesh23(Thsq2,transfo=[XX2,YY2max,ZZ2],region=ref32h,orientation=-1);  
+meshS Th32b = movemesh23(Thsq2,transfo=[XX2,YY2min,ZZ2],region=ref32b,orientation=1);
+
+/////////////////////////////////
+x0=0.; x1=2*pi; y0=0.; y1=1.5;
+mesh Thsq3 = square(35,8,[x0+(x1-x0)*x,y0+(y1-y0)*y]);
+func XX3min = 1.;
+func XX3max = 2.;
+
+func YY3 = x;
+func ZZ3 = y;
+
+int[int] ref33h = [0,15];
+int[int] ref33b = [0,16];
+
+meshS Th33h = movemesh23(Thsq3,transfo=[XX3max,YY3,ZZ3],region=ref33h,orientation=1);  
+meshS Th33b = movemesh23(Thsq3,transfo=[XX3min,YY3,ZZ3],region=ref33b,orientation=-1); 
+
+////////////////////////////////
+meshS Th33 = Th31h+Th31b+Th32h+Th32b+Th33h+Th33b; // "gluing" surface meshs to obtain the surface of cube
+//medit("glumesh",Th33);
+Th33=change(Th33, rmInternalEdges=true);
+savemesh(Th33,"Th33.mesh");
+
+// build a mesh of a axis parallel box with TetGen
+//real[int] domaine = [1.5,pi,0.75,145,0.001];
+//mesh3 Thfinal = tetg(Th33,switch="pqaAAYYQ",nbofregions=1,regionlist=domaine);    // Tetrahelize the interior of the cube with tetgen
+//medit("tetg",Thfinal);
+//savemesh(Thfinal,"Thfinal.mesh");
+
+
+// build a mesh of a half cylindrical shell of interior radius 1. and exterior radius 2 and heigh 1.5
+func mv2x = x*cos(y);
+func mv2y = x*sin(y);
+func mv2z = z;
+
+plot(Th33,wait=1);
+
+meshS Thmv2surf = movemesh(Th33,[mv2x,mv2y,mv2z]);
+meshS Thmv2surfclean = movemesh(Th33,[mv2x,mv2y,mv2z],cleanmesh=true, removeduplicate=true);
+
+savemesh(Thmv2surfclean,"Thmv2surfclean.mesh");
+plot(Thmv2surf,wait=1,cmm="th without clean mesh");
+plot(Thmv2surfclean,wait=1,cmm="th with clean mesh and remove all multiples ");
+
+//assert( Th33.nt-Thmv2surfclean.nt == Thsq2.nt); 

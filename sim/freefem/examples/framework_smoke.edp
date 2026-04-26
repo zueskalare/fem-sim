@@ -1,0 +1,39 @@
+include "getARGV.idp"
+load "iovtk"
+
+string runDir = getARGV("-run_dir", ".");
+string seriesFile = getARGV("-series_file", runDir + "/series.tsv");
+string meshFile = getARGV("-mesh_file", runDir + "/mesh.mesh");
+string fieldFile = getARGV("-field_file", runDir + "/trajectory.vtu");
+string summaryFile = getARGV("-summary_file", runDir + "/summary.tsv");
+int nx = getARGV("-mesh_nx", 12);
+int ny = getARGV("-mesh_ny", 12);
+int steps = getARGV("-solver_steps", 8);
+real dt = getARGV("-solver_dt", 0.1);
+real decay = getARGV("-param_decay", 0.2);
+
+mesh Th = square(nx, ny);
+fespace Vh(Th, P1);
+Vh u;
+real domainArea = int2d(Th)(1.0);
+int[int] fforder = [1];
+
+savemesh(Th, meshFile);
+
+ofstream series(seriesFile);
+series << "step\ttime\tmean_value\n";
+
+for (int i = 0; i < steps; ++i) {
+    real t = i * dt;
+    u = sin(pi * x) * sin(pi * y) * exp(-decay * t);
+    real meanValue = int2d(Th)(u) / domainArea;
+    series << i << "\t" << t << "\t" << meanValue << endl;
+    savevtk(fieldFile, Th, u, dataname = "u", order = fforder, append = i ? true : false);
+}
+
+ofstream summary(summaryFile);
+summary << "mesh_nx\t" << nx << endl;
+summary << "mesh_ny\t" << ny << endl;
+summary << "steps\t" << steps << endl;
+summary << "dt\t" << dt << endl;
+summary << "decay\t" << decay << endl;
