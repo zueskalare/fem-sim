@@ -25,6 +25,25 @@ import numpy as onp
 
 logger = logging.getLogger(__name__)
 
+# Under mpirun -n N every rank does its own independent solve on its own
+# samples (embarrassingly parallel — see campaign._partition_pairs). But
+# jax-fem's get_A() builds a PETSc.Mat on PETSc's world communicator. With
+# N ranks all sharing MPI_COMM_WORLD, every rank thinks it's contributing
+# one slice of a single distributed matrix, so assembly fails with
+# "size(I) is K*N, expected K".
+#
+# Fix: initialise petsc4py with MPI.COMM_SELF as its world *before* jax_fem
+# imports PETSc (which happens via the `from jax_fem...` line below).  Once
+# PETSc is up on COMM_SELF, every PETSc object jax-fem creates is rank-local
+# and the solves are truly independent. petsc4py.init() is a no-op if PETSc
+# is already initialised, so the order matters: this block must run first.
+try:
+    import petsc4py
+    from mpi4py import MPI as _MPI
+    petsc4py.init(comm=_MPI.COMM_SELF)
+except ImportError:  # petsc4py / mpi4py not installed; jax_fem will fail later
+    pass
+
 from jax_fem.generate_mesh import Mesh, get_meshio_cell_type, rectangle_mesh
 from jax_fem.problem import Problem
 from jax_fem.solver import solver as _jaxfem_solver

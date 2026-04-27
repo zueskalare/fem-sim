@@ -451,6 +451,42 @@ load_case index) so a sampled run and a full run produce identical IDs for
 overlapping pairs — sample subsets are extensions of the full grid, not
 renumberings.
 
+### Parallel campaigns with MPI (single node)
+
+For million-sample dataset builds, `build_campaign` dispatches whole samples
+across MPI ranks — each rank solves its own samples on its own process,
+no inter-rank communication on the solve. Today the JAX-FEM backend is the
+target (verified path); FreeFEM works trivially as a subprocess but isn't
+yet wired into the dispatch.
+
+```bash
+# Install
+uv sync --extra mpi             # adds mpi4py
+brew install open-mpi            # macOS; or use your distro's openmpi-dev
+
+# Run with N ranks
+mpirun -n 8 uv run --no-sync fem-sim build-dataset \
+    --config configs/grf_bimat_campaign.yaml
+```
+
+How it works:
+- All ranks load the config and compute the same `pairs` list (deterministic).
+- Rank `r` of size `N` takes the round-robin slice `pairs[r::N]`.
+- Each rank writes its own samples under the shared `output_dir/samples/`;
+  unique sample IDs prevent collisions.
+- After a barrier, rank 0 collects all successful paths and writes a global
+  `index.json` (with an `mpi_size` field for provenance).
+- All ranks log their own per-sample work prefixed with `[rN/size]` so you can
+  follow progress per rank.
+
+The JAX-FEM solver pins `petsc4py` to `MPI.COMM_SELF` at import time so each
+rank's PETSc objects are rank-local (otherwise jax-fem's `PETSc.Mat` defaults
+to `MPI_COMM_WORLD` and assembly fails — every rank would think it's a slice
+of one distributed matrix). Single-process runs are unaffected.
+
+If `mpi4py` isn't installed, `build_campaign` silently runs single-process —
+no flag needed.
+
 ### Bundled example configs
 
 | File                                                | Layout              | Content                                                                                  |
@@ -495,6 +531,9 @@ samples by `sample_id`, `gi`, `li`, or `backend` without parsing filenames.
   install recipe)
 - matplotlib >= 3.10 (optional — for `fem-sim inspect` and the demo notebook)
 - jupyter + ipykernel (optional — for `notebooks/grf_bimat_demo.ipynb`)
+- `mpi4py` >= 4.0 + an MPI implementation like Open MPI (optional — for
+  `mpirun -n N fem-sim build-dataset` parallel campaigns; install via
+  `uv sync --extra mpi` and your distro's `openmpi` / `brew install open-mpi`)
 
 ## Tests
 
@@ -504,7 +543,7 @@ uv run python -m unittest tests.test_geometry tests.test_load_case \
     tests.test_config tests.test_plugins tests.test_jaxfem \
     tests.test_campaign tests.test_runner tests.test_vtk_export
 
-# Full suite (120 tests; requires FreeFem++ for some, JAX-FEM stack for others)
+# Full suite (124 tests; requires FreeFem++ for some, JAX-FEM stack for others)
 uv run python -m unittest discover -s tests
 
 # JAX-FEM backend only (needs petsc4py — see backend section)

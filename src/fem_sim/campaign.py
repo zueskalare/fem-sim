@@ -256,6 +256,39 @@ def _select_pairs(
     return pairs
 
 
+def _mpi_state() -> tuple[Any, int, int]:
+    """Return ``(comm, size, rank)`` for the active MPI world.
+
+    Falls back to ``(None, 1, 0)`` when ``mpi4py`` is not installed or only
+    a single process is running.  Importing ``mpi4py`` initialises MPI; we
+    do that lazily so non-MPI runs don't pay the cost.
+    """
+    try:
+        from mpi4py import MPI
+    except ImportError:
+        return None, 1, 0
+    comm = MPI.COMM_WORLD
+    size = comm.Get_size()
+    if size <= 1:
+        return None, 1, 0
+    return comm, size, comm.Get_rank()
+
+
+def _partition_pairs(
+    pairs: list[tuple[int, int]], rank: int, size: int,
+) -> list[tuple[int, int]]:
+    """Round-robin slice of ``pairs`` for a given ``(rank, size)``.
+
+    Round-robin (``pairs[rank::size]``) gives better load balance than
+    contiguous chunks when per-pair runtime varies — adjacent pairs in the
+    grid often share a geometry and therefore similar solve cost, so
+    contiguous slicing concentrates expensive geometries on a few ranks.
+    """
+    if size <= 1:
+        return pairs
+    return pairs[rank::size]
+
+
 def build_campaign(
     config: CampaignConfig,
     limit: int | None = None,
@@ -292,30 +325,51 @@ def build_campaign(
     Returns
     -------
     list[Path]
-        ``.npz`` paths for successfully completed samples (empty for dry
-        runs and for runs where every pair failed).
+        ``.npz`` paths for successfully completed samples on the calling
+        process (empty for dry runs and for runs where every pair failed).
+        Under MPI each rank returns only the subset it processed; the
+        global ``index.json`` (written by rank 0) lists all of them.
+
+    MPI
+    ---
+    When invoked under ``mpirun -n N ...`` (with ``mpi4py`` installed),
+    pair selection is identical on every rank, then each rank takes a
+    round-robin slice (``pairs[rank::size]``) and processes its own
+    samples independently — no inter-rank communication on the solve.
+    Sample IDs are unique per (gi, li), so per-rank writes don't collide
+    on the shared ``output_dir``.  Rank 0 logs progress and writes
+    ``index.json`` after a barrier.
     """
+    comm, size, rank = _mpi_state()
     pairs = _select_pairs(
         len(config.geometries), len(config.load_cases),
         limit=limit, shuffle=shuffle, seed=seed,
     )
+    my_pairs = _partition_pairs(pairs, rank, size)
     total_in_grid = len(config.geometries) * len(config.load_cases)
 
     if dry_run:
-        logger.info(
-            "Dry run: %d/%d pairs would build (limit=%s, shuffle=%s, seed=%s)",
-            len(pairs), total_in_grid, limit, shuffle, seed,
-        )
-        for gi, li in pairs:
-            geo_type = config.geometries[gi].get("type", "?")
-            lc_type = config.load_cases[li].get("type", "?")
-            logger.info("  g%03d × l%02d : %s + %s", gi, li, geo_type, lc_type)
+        if rank == 0:
+            logger.info(
+                "Dry run: %d/%d pairs would build (limit=%s, shuffle=%s, seed=%s, mpi_size=%d)",
+                len(pairs), total_in_grid, limit, shuffle, seed, size,
+            )
+            for gi, li in pairs:
+                geo_type = config.geometries[gi].get("type", "?")
+                lc_type = config.load_cases[li].get("type", "?")
+                logger.info("  g%03d × l%02d : %s + %s", gi, li, geo_type, lc_type)
         return []
 
-    config.output_dir.mkdir(parents=True, exist_ok=True)
+    if rank == 0:
+        config.output_dir.mkdir(parents=True, exist_ok=True)
+    if comm is not None:
+        # Wait for rank 0 to mkdir before any rank starts writing under it.
+        comm.Barrier()
+
+    rank_tag = f"[r{rank}/{size}] " if size > 1 else ""
     results: list[Path] = []
 
-    for gi, li in pairs:
+    for gi, li in my_pairs:
         geo_spec = config.geometries[gi]
         lc_spec = config.load_cases[li]
 
@@ -330,7 +384,7 @@ def build_campaign(
         run_dir = config.output_dir / "runs" / sample_id
         npz_path = config.output_dir / "samples" / f"{sample_id}.npz"
 
-        logger.info("Sample %s: %s + %s", sample_id, geo_label, lc_label)
+        logger.info("%sSample %s: %s + %s", rank_tag, sample_id, geo_label, lc_label)
 
         try:
             sample = run_simulation(
@@ -347,34 +401,47 @@ def build_campaign(
             sample.metadata["load_case_index"] = li
             save_sample(sample, npz_path)
             results.append(npz_path)
-            logger.info("  -> saved %s", npz_path)
+            logger.info("%s  -> saved %s", rank_tag, npz_path)
 
             if export_vtk:
                 # Imported lazily so users not exporting VTK don't pay the import cost.
                 from fem_sim.vtk_export import export_sample_vtk
                 vtk_dir = config.output_dir / "vtk" / sample_id
                 pvd = export_sample_vtk(sample, output_dir=vtk_dir, name=sample_id)
-                logger.info("  -> vtk %s", pvd)
+                logger.info("%s  -> vtk %s", rank_tag, pvd)
         except Exception:
-            logger.exception("  -> FAILED %s", sample_id)
+            logger.exception("%s  -> FAILED %s", rank_tag, sample_id)
 
-    index = {
-        "total_samples": len(results),
-        "total_attempted": len(pairs),
-        "total_in_grid": total_in_grid,
-        "limit": limit,
-        "shuffle": shuffle,
-        "seed": seed,
-        "export_vtk": export_vtk,
-        "samples": [str(p) for p in results],
-    }
-    index_path = config.output_dir / "index.json"
-    with open(index_path, "w") as f:
-        json.dump(index, f, indent=2)
-    logger.info(
-        "Campaign complete: %d/%d samples (subset %d/%d). Index: %s",
-        len(results), len(pairs), len(pairs), total_in_grid, index_path,
-    )
+    # Gather successful paths to rank 0 and write the global index.
+    if comm is not None:
+        comm.Barrier()
+        gathered = comm.gather(results, root=0)
+    else:
+        gathered = [results]
+
+    if rank == 0:
+        all_paths: list[Path] = []
+        for sub in (gathered or []):
+            all_paths.extend(sub)
+        all_paths.sort()
+        index = {
+            "total_samples": len(all_paths),
+            "total_attempted": len(pairs),
+            "total_in_grid": total_in_grid,
+            "limit": limit,
+            "shuffle": shuffle,
+            "seed": seed,
+            "export_vtk": export_vtk,
+            "mpi_size": size,
+            "samples": [str(p) for p in all_paths],
+        }
+        index_path = config.output_dir / "index.json"
+        with open(index_path, "w") as f:
+            json.dump(index, f, indent=2)
+        logger.info(
+            "Campaign complete: %d/%d samples (subset %d/%d, mpi_size=%d). Index: %s",
+            len(all_paths), len(pairs), len(pairs), total_in_grid, size, index_path,
+        )
 
     return results
 

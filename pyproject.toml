@@ -17,8 +17,9 @@ dependencies = [
 viz = ["matplotlib>=3.10"]
 plugins = ["Pillow>=10.0"]
 jaxfem = ["jax>=0.4.30", "jax-fem>=0.0.6", "pyfiglet>=1.0", "meshio>=5.3", "gmsh>=4.11", "fenics-basix>=0.8"]
+mpi = ["mpi4py>=4.0"]
 notebook = ["jupyter>=1.1", "ipykernel>=6.29", "matplotlib>=3.10"]
-all = ["matplotlib>=3.10", "Pillow>=10.0", "jax>=0.4.30", "jax-fem>=0.0.6", "jupyter>=1.1", "ipykernel>=6.29"]
+all = ["matplotlib>=3.10", "Pillow>=10.0", "jax>=0.4.30", "jax-fem>=0.0.6", "jupyter>=1.1", "ipykernel>=6.29", "mpi4py>=4.0"]
 
 [project.scripts]
 fem-sim = "fem_sim.cli:main"

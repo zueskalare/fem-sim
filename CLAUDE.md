@@ -8,11 +8,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Current Status
 
-**Last Updated**: 2026-04-25
+**Last Updated**: 2026-04-26
 **Stage**: Active Development
-**Summary**: Multi-backend FEM (FreeFEM + JAX-FEM) with a GRF bi-material dataset pipeline. Campaign configs accept JSON or YAML, materials are pulled from a named library, sampling subsets supported via `--limit`/`--shuffle`. Every CLI subcommand has a matching Python wrapper (`build_dataset`, `run_fem`, `inspect`, `export_sample_vtk`, …) so notebooks share code with the CLI. Characterization load cases (uniaxial / shear / biaxial) added for square bimaterial samples. ParaView animation export via `.vti` per step + `.pvd` collection — both standalone (`fem-sim export-vtk`) and inline with dataset generation (`build-dataset --export-vtk`). 120 tests pass (1 auto-skipped when `jax-fem` is missing).
+**Summary**: Multi-backend FEM (FreeFEM + JAX-FEM) with a GRF bi-material dataset pipeline. Campaign configs accept JSON or YAML, materials are pulled from a named library, sampling subsets supported via `--limit`/`--shuffle`. Every CLI subcommand has a matching Python wrapper (`build_dataset`, `run_fem`, `inspect`, `export_sample_vtk`, …) so notebooks share code with the CLI. Characterization load cases (uniaxial / shear / biaxial) added for square bimaterial samples. ParaView animation export via `.vti` per step + `.pvd` collection — both standalone (`fem-sim export-vtk`) and inline with dataset generation (`build-dataset --export-vtk`). MPI dispatch for million-sample campaigns: `mpirun -n N fem-sim build-dataset ...` round-robins pairs across ranks, JAX-FEM solver pins `petsc4py` to `MPI.COMM_SELF` so per-rank solves are independent. 124 tests pass (1 auto-skipped when `jax-fem` is missing).
 
 ## Work Log
+
+### 2026-04-26
+- **MPI dispatch for parallel campaigns.** `build_campaign` now detects `mpi4py` and round-robins pairs across ranks (`pairs[rank::size]`). Each rank writes its own samples (sample IDs are unique per `(gi, li)` so no path collisions on the shared `output_dir`); rank 0 runs a barrier, gathers successful paths, and writes the global `index.json` (now carries an `mpi_size` field). All ranks log their own per-sample work prefixed with `[rN/size]`. Single-process behaviour is unchanged. New `[mpi]` extra: `uv sync --extra mpi` adds `mpi4py>=4.0`. Verified end-to-end with `mpirun -n 4 uv run --no-sync fem-sim build-dataset --config configs/bimat_characterization_campaign.yaml --limit 8` → all 8 samples succeeded across 4 ranks with perfect round-robin distribution. 4 new tests in `test_campaign.py` (`TestPartitionPairs`) → **124 total**. Real `mpirun` smoke test isn't part of the default suite (avoids requiring MPI in CI); rerun the command above to validate the dispatch when touching this code.
+- **PETSc COMM_SELF pin in JAX-FEM solver.** `solvers/elasticity2d_jaxfem.py` now calls `petsc4py.init(comm=MPI.COMM_SELF)` *before* the `from jax_fem...` imports. Without this, jax-fem's `get_A()` builds `PETSc.Mat` on `MPI_COMM_WORLD` even when `umfpack_solver` is requested (PETSc is used for assembly, UMFPACK only for the solve), so under `mpirun -n N` every rank tries to contribute to one distributed matrix and assembly fails with `size(I) is K*N, expected K`. With the pin, each rank's PETSc objects are rank-local. No effect on single-process runs.
 
 ### 2026-04-25
 - **VTK export inline with dataset generation.** Added `export_vtk` kwarg to `build_campaign` and `build_dataset`; `--export-vtk` CLI flag on `fem-sim build-dataset`. When set, each successful sample also writes a `.vti`-per-step + `.pvd` collection under `<output_dir>/vtk/<sample_id>/`, parallel to `samples/` and `runs/`. Choice is recorded in `index.json`. +1 test → **120 total**.
@@ -62,17 +66,19 @@ uv sync
 uv sync --extra jaxfem      # JAX + jax-fem (+ transitive meshio/gmsh/basix/pyfiglet)
 uv sync --extra notebook    # jupyter + ipykernel + matplotlib
 uv sync --extra viz         # matplotlib only (for `fem-sim inspect`)
+uv sync --extra mpi         # mpi4py for `mpirun -n N fem-sim build-dataset`
 
 # petsc4py is required by the jaxfem backend but must be installed manually
 # (system PETSc needed; uv sync cannot build it without PETSC_DIR):
 brew install petsc                                               # macOS
+brew install open-mpi                                            # macOS, for the mpi extra
 export PETSC_DIR=$(brew --prefix petsc) OMPI_CC=/usr/bin/clang
 uv pip install 'petsc4py==3.24.*'                                # version must match brew's petsc
 # NOTE: `uv sync` removes petsc4py each time; re-run this install after any sync.
 
 # --- Tests ---
 
-uv run python -m unittest discover -s tests                      # 120 total (1 auto-skip)
+uv run python -m unittest discover -s tests                      # 124 total (1 auto-skip)
 uv run python -m unittest tests.test_geometry tests.test_load_case tests.test_config tests.test_campaign tests.test_runner
 uv run python -m unittest tests.test_freefem tests.test_fem_roundtrip            # needs FreeFem++
 uv run python -m unittest tests.test_jaxfem_smoke tests.test_fem_roundtrip_jaxfem # needs jax-fem + petsc4py
@@ -93,6 +99,8 @@ uv run fem-sim build-dataset --config configs/grf_bimat_campaign.yaml --limit 4
 uv run fem-sim build-dataset --config configs/grf_bimat_campaign.yaml --limit 4 --shuffle --seed 7
 # Inline VTK export (writes vtk/<sample_id>/ alongside samples/<sample_id>.npz):
 uv run fem-sim build-dataset --config configs/grf_bimat_campaign.yaml --export-vtk
+# MPI dispatch — auto-detected when launched under mpirun (no flag needed):
+mpirun -n 8 uv run --no-sync fem-sim build-dataset --config configs/grf_bimat_campaign.yaml
 
 # Inspect a .npz sample
 uv run fem-sim inspect sample.npz --step 5
@@ -180,8 +188,8 @@ Void pixels = 0.0. Variable `H, W`. This is the sole coupling point to `fem-worl
 ## Known Issues & TODOs
 
 - FEniCSx backend is a stub (not implemented).
-- Campaign runner is single-threaded (could benefit from parallel execution; easy win since JAX-FEM solves are ~1–2 s on the 48×96 grid).  Use `--limit` for now to keep iteration fast.
+- Campaign runner: single-process by default; for parallelism use `mpirun -n N fem-sim build-dataset ...` (only the JAX-FEM backend is verified under MPI today).  Single-node only — no cross-node coordination beyond what mpi4py + a shared filesystem give you for free.
 - `petsc4py` cannot be declared as a dep in `pyproject.toml` — its pip build needs `PETSC_DIR` at install time. It gets wiped on every `uv sync`; document and require the manual reinstall.  Use `uv run --no-sync ...` for testing to avoid re-wiping.
 - `sim/freefem/examples/` contains many tutorial scripts — consider trimming to essentials.
-- Two parallel "jaxfem" code paths: `backends/jaxfem.py` is the *orchestration* backend (loads a user `.py` exposing `solve(config)`), while `pixel_to_fem._run_jaxfem` calls the in-package `solvers/elasticity2d_jaxfem.solve(nx, ny, steps, run_dir)` directly.  Two different `solve()` signatures — worth unifying.
-- `backends/jaxfem.py` uses `os.chdir` for working-directory handoff, which blocks any future parallel execution.  Replace with `contextlib.chdir` (3.11+) or pass the dir as a parameter to `solve(config)`.
+- Two parallel "jaxfem" code paths: `backends/jaxfem.py` is the *orchestration* backend (loads a user `.py` exposing `solve(config)`), while `pixel_to_fem._run_jaxfem` calls the in-package `solvers/elasticity2d_jaxfem.solve(nx, ny, steps, run_dir)` directly.  Two different `solve()` signatures — worth unifying.  The MPI-safe COMM_SELF pin only lives on the in-package solver path; the orchestration backend would need the same treatment if used under `mpirun`.
+- `backends/jaxfem.py` uses `os.chdir` for working-directory handoff, which blocks running multiple samples concurrently *inside one process* (e.g., a future thread/asyncio dispatcher).  Doesn't affect MPI dispatch (each rank is its own process).  Replace with `contextlib.chdir` (3.11+) or pass the dir as a parameter to `solve(config)`.

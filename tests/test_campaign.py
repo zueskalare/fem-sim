@@ -14,6 +14,7 @@ from fem_sim.campaign import (
     CampaignConfig,
     _build_geometry,
     _material_slots,
+    _partition_pairs,
     _resolve_materials,
     _select_pairs,
     build_campaign,
@@ -196,6 +197,40 @@ class TestSelectPairs(unittest.TestCase):
         self.assertEqual(full, shuffled)
 
 
+class TestPartitionPairs(unittest.TestCase):
+    """Round-robin pair partition for MPI dispatch."""
+
+    def test_single_rank_returns_all(self) -> None:
+        pairs = [(0, 0), (0, 1), (1, 0), (1, 1)]
+        self.assertEqual(_partition_pairs(pairs, rank=0, size=1), pairs)
+
+    def test_round_robin_split_two_ranks(self) -> None:
+        pairs = [(0, 0), (0, 1), (1, 0), (1, 1)]
+        self.assertEqual(_partition_pairs(pairs, rank=0, size=2), [(0, 0), (1, 0)])
+        self.assertEqual(_partition_pairs(pairs, rank=1, size=2), [(0, 1), (1, 1)])
+
+    def test_partition_is_disjoint_and_complete(self) -> None:
+        pairs = [(g, l) for g in range(5) for l in range(3)]  # 15 pairs
+        for size in (1, 2, 3, 4, 7, 16):
+            chunks = [_partition_pairs(pairs, r, size) for r in range(size)]
+            flat = [p for c in chunks for p in c]
+            self.assertEqual(sorted(flat), sorted(pairs), f"size={size}")
+            # No overlap between any two ranks.
+            for r in range(size):
+                for s in range(r + 1, size):
+                    self.assertEqual(
+                        set(chunks[r]) & set(chunks[s]),
+                        set(),
+                        f"size={size}, ranks {r},{s}",
+                    )
+
+    def test_uneven_split_load_balanced(self) -> None:
+        # 10 pairs across 4 ranks → counts (3, 3, 2, 2), not (3, 3, 3, 1).
+        pairs = list(range(10))
+        counts = [len(_partition_pairs(pairs, r, 4)) for r in range(4)]
+        self.assertEqual(sorted(counts, reverse=True), [3, 3, 2, 2])
+
+
 class TestBuildCampaignSampling(unittest.TestCase):
     """End-to-end sampling checks using a stub backend (no FEM solve)."""
 
@@ -257,6 +292,8 @@ class TestBuildCampaignSampling(unittest.TestCase):
             self.assertEqual(index["total_in_grid"], 6)
             self.assertEqual(index["limit"], 2)
             self.assertFalse(index["export_vtk"])  # off by default
+            # mpi_size present even in single-process runs (size=1).
+            self.assertEqual(index["mpi_size"], 1)
 
     def test_export_vtk_writes_per_sample_collections(self) -> None:
         # Reuse the same stub backend pattern.
