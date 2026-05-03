@@ -1,0 +1,8976 @@
+output_dir: /Users/jt35560/WorkSpace/fem-sim/outputs/datasets/bimat_characterization_10k
+backend: jaxfem
+steps: 5
+materials:
+  TPU: {E: 30.0, nu: 0.48, rho: 1.2e-09}
+  PLA: {E: 3500.0, nu: 0.36, rho: 1.24e-09}
+geometries:
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 0
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 1
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 2
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 3
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 4
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 5
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 6
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 7
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 8
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 9
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 10
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 11
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 12
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 13
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 14
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 15
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 16
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 17
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 18
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 19
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 20
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 21
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 22
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 23
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 24
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 25
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 26
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 27
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 28
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 29
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 30
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 31
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 32
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 33
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 34
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 35
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 36
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 37
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 38
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 39
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 40
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 41
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 42
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 43
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 44
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 45
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 46
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 47
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 48
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 49
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 50
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 51
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 52
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 53
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 54
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 55
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 56
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 57
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 58
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 59
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 60
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 61
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 62
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 63
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 64
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 65
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 66
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 67
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 68
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 69
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 70
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 71
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 72
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 73
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 74
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 75
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 76
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 77
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 78
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 79
+  correlation_length: 3.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 0
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 1
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 2
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 3
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 4
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 5
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 6
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 7
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 8
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 9
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 10
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 11
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 12
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 13
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 14
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 15
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 16
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 17
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 18
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 19
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 20
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 21
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 22
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 23
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 24
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 25
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 26
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 27
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 28
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 29
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 30
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 31
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 32
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 33
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 34
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 35
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 36
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 37
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 38
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 39
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 40
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 41
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 42
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 43
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 44
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 45
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 46
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 47
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 48
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 49
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 50
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 51
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 52
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 53
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 54
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 55
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 56
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 57
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 58
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 59
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 60
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 61
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 62
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 63
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 64
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 65
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 66
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 67
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 68
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 69
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 70
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 71
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 72
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 73
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 74
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 75
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 76
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 77
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 78
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 79
+  correlation_length: 3.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 0
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 1
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 2
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 3
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 4
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 5
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 6
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 7
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 8
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 9
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 10
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 11
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 12
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 13
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 14
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 15
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 16
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 17
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 18
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 19
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 20
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 21
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 22
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 23
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 24
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 25
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 26
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 27
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 28
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 29
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 30
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 31
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 32
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 33
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 34
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 35
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 36
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 37
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 38
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 39
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 40
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 41
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 42
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 43
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 44
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 45
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 46
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 47
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 48
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 49
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 50
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 51
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 52
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 53
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 54
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 55
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 56
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 57
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 58
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 59
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 60
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 61
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 62
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 63
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 64
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 65
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 66
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 67
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 68
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 69
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 70
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 71
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 72
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 73
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 74
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 75
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 76
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 77
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 78
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 79
+  correlation_length: 3.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 0
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 1
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 2
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 3
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 4
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 5
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 6
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 7
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 8
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 9
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 10
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 11
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 12
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 13
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 14
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 15
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 16
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 17
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 18
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 19
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 20
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 21
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 22
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 23
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 24
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 25
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 26
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 27
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 28
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 29
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 30
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 31
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 32
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 33
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 34
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 35
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 36
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 37
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 38
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 39
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 40
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 41
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 42
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 43
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 44
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 45
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 46
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 47
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 48
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 49
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 50
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 51
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 52
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 53
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 54
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 55
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 56
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 57
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 58
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 59
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 60
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 61
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 62
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 63
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 64
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 65
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 66
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 67
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 68
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 69
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 70
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 71
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 72
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 73
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 74
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 75
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 76
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 77
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 78
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 79
+  correlation_length: 3.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 0
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 1
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 2
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 3
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 4
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 5
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 6
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 7
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 8
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 9
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 10
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 11
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 12
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 13
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 14
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 15
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 16
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 17
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 18
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 19
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 20
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 21
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 22
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 23
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 24
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 25
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 26
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 27
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 28
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 29
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 30
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 31
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 32
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 33
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 34
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 35
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 36
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 37
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 38
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 39
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 40
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 41
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 42
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 43
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 44
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 45
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 46
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 47
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 48
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 49
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 50
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 51
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 52
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 53
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 54
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 55
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 56
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 57
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 58
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 59
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 60
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 61
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 62
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 63
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 64
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 65
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 66
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 67
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 68
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 69
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 70
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 71
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 72
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 73
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 74
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 75
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 76
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 77
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 78
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 79
+  correlation_length: 6.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 0
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 1
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 2
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 3
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 4
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 5
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 6
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 7
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 8
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 9
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 10
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 11
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 12
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 13
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 14
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 15
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 16
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 17
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 18
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 19
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 20
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 21
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 22
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 23
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 24
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 25
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 26
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 27
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 28
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 29
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 30
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 31
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 32
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 33
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 34
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 35
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 36
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 37
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 38
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 39
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 40
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 41
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 42
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 43
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 44
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 45
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 46
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 47
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 48
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 49
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 50
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 51
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 52
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 53
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 54
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 55
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 56
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 57
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 58
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 59
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 60
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 61
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 62
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 63
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 64
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 65
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 66
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 67
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 68
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 69
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 70
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 71
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 72
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 73
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 74
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 75
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 76
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 77
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 78
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 79
+  correlation_length: 6.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 0
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 1
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 2
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 3
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 4
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 5
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 6
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 7
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 8
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 9
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 10
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 11
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 12
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 13
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 14
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 15
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 16
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 17
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 18
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 19
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 20
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 21
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 22
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 23
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 24
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 25
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 26
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 27
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 28
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 29
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 30
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 31
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 32
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 33
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 34
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 35
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 36
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 37
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 38
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 39
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 40
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 41
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 42
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 43
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 44
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 45
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 46
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 47
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 48
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 49
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 50
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 51
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 52
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 53
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 54
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 55
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 56
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 57
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 58
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 59
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 60
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 61
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 62
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 63
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 64
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 65
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 66
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 67
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 68
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 69
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 70
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 71
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 72
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 73
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 74
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 75
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 76
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 77
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 78
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 79
+  correlation_length: 6.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 0
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 1
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 2
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 3
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 4
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 5
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 6
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 7
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 8
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 9
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 10
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 11
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 12
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 13
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 14
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 15
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 16
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 17
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 18
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 19
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 20
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 21
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 22
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 23
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 24
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 25
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 26
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 27
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 28
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 29
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 30
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 31
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 32
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 33
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 34
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 35
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 36
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 37
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 38
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 39
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 40
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 41
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 42
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 43
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 44
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 45
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 46
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 47
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 48
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 49
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 50
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 51
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 52
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 53
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 54
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 55
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 56
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 57
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 58
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 59
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 60
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 61
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 62
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 63
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 64
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 65
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 66
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 67
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 68
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 69
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 70
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 71
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 72
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 73
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 74
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 75
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 76
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 77
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 78
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 79
+  correlation_length: 6.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 0
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 1
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 2
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 3
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 4
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 5
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 6
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 7
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 8
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 9
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 10
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 11
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 12
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 13
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 14
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 15
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 16
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 17
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 18
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 19
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 20
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 21
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 22
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 23
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 24
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 25
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 26
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 27
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 28
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 29
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 30
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 31
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 32
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 33
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 34
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 35
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 36
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 37
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 38
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 39
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 40
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 41
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 42
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 43
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 44
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 45
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 46
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 47
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 48
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 49
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 50
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 51
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 52
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 53
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 54
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 55
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 56
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 57
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 58
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 59
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 60
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 61
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 62
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 63
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 64
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 65
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 66
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 67
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 68
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 69
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 70
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 71
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 72
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 73
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 74
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 75
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 76
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 77
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 78
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 79
+  correlation_length: 12.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 0
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 1
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 2
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 3
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 4
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 5
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 6
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 7
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 8
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 9
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 10
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 11
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 12
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 13
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 14
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 15
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 16
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 17
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 18
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 19
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 20
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 21
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 22
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 23
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 24
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 25
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 26
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 27
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 28
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 29
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 30
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 31
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 32
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 33
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 34
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 35
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 36
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 37
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 38
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 39
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 40
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 41
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 42
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 43
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 44
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 45
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 46
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 47
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 48
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 49
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 50
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 51
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 52
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 53
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 54
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 55
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 56
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 57
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 58
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 59
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 60
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 61
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 62
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 63
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 64
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 65
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 66
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 67
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 68
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 69
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 70
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 71
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 72
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 73
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 74
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 75
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 76
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 77
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 78
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 79
+  correlation_length: 12.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 0
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 1
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 2
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 3
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 4
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 5
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 6
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 7
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 8
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 9
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 10
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 11
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 12
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 13
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 14
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 15
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 16
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 17
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 18
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 19
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 20
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 21
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 22
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 23
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 24
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 25
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 26
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 27
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 28
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 29
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 30
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 31
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 32
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 33
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 34
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 35
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 36
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 37
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 38
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 39
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 40
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 41
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 42
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 43
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 44
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 45
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 46
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 47
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 48
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 49
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 50
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 51
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 52
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 53
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 54
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 55
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 56
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 57
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 58
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 59
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 60
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 61
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 62
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 63
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 64
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 65
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 66
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 67
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 68
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 69
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 70
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 71
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 72
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 73
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 74
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 75
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 76
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 77
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 78
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 79
+  correlation_length: 12.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 0
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 1
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 2
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 3
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 4
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 5
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 6
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 7
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 8
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 9
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 10
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 11
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 12
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 13
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 14
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 15
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 16
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 17
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 18
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 19
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 20
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 21
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 22
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 23
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 24
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 25
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 26
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 27
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 28
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 29
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 30
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 31
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 32
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 33
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 34
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 35
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 36
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 37
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 38
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 39
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 40
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 41
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 42
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 43
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 44
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 45
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 46
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 47
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 48
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 49
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 50
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 51
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 52
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 53
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 54
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 55
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 56
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 57
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 58
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 59
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 60
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 61
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 62
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 63
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 64
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 65
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 66
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 67
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 68
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 69
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 70
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 71
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 72
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 73
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 74
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 75
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 76
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 77
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 78
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 79
+  correlation_length: 12.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 0
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 1
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 2
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 3
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 4
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 5
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 6
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 7
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 8
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 9
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 10
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 11
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 12
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 13
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 14
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 15
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 16
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 17
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 18
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 19
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 20
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 21
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 22
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 23
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 24
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 25
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 26
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 27
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 28
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 29
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 30
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 31
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 32
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 33
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 34
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 35
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 36
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 37
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 38
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 39
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 40
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 41
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 42
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 43
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 44
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 45
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 46
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 47
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 48
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 49
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 50
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 51
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 52
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 53
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 54
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 55
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 56
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 57
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 58
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 59
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 60
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 61
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 62
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 63
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 64
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 65
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 66
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 67
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 68
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 69
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 70
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 71
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 72
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 73
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 74
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 75
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 76
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 77
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 78
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 79
+  correlation_length: 24.0
+  volume_fraction: 0.3
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 0
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 1
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 2
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 3
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 4
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 5
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 6
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 7
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 8
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 9
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 10
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 11
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 12
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 13
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 14
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 15
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 16
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 17
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 18
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 19
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 20
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 21
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 22
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 23
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 24
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 25
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 26
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 27
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 28
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 29
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 30
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 31
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 32
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 33
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 34
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 35
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 36
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 37
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 38
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 39
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 40
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 41
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 42
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 43
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 44
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 45
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 46
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 47
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 48
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 49
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 50
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 51
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 52
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 53
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 54
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 55
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 56
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 57
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 58
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 59
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 60
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 61
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 62
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 63
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 64
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 65
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 66
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 67
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 68
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 69
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 70
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 71
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 72
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 73
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 74
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 75
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 76
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 77
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 78
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 79
+  correlation_length: 24.0
+  volume_fraction: 0.4
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 0
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 1
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 2
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 3
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 4
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 5
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 6
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 7
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 8
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 9
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 10
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 11
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 12
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 13
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 14
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 15
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 16
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 17
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 18
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 19
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 20
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 21
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 22
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 23
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 24
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 25
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 26
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 27
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 28
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 29
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 30
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 31
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 32
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 33
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 34
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 35
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 36
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 37
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 38
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 39
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 40
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 41
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 42
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 43
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 44
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 45
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 46
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 47
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 48
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 49
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 50
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 51
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 52
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 53
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 54
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 55
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 56
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 57
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 58
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 59
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 60
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 61
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 62
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 63
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 64
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 65
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 66
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 67
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 68
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 69
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 70
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 71
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 72
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 73
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 74
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 75
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 76
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 77
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 78
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 79
+  correlation_length: 24.0
+  volume_fraction: 0.5
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 0
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 1
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 2
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 3
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 4
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 5
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 6
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 7
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 8
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 9
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 10
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 11
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 12
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 13
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 14
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 15
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 16
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 17
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 18
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 19
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 20
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 21
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 22
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 23
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 24
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 25
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 26
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 27
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 28
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 29
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 30
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 31
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 32
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 33
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 34
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 35
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 36
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 37
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 38
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 39
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 40
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 41
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 42
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 43
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 44
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 45
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 46
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 47
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 48
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 49
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 50
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 51
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 52
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 53
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 54
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 55
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 56
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 57
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 58
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 59
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 60
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 61
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 62
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 63
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 64
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 65
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 66
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 67
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 68
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 69
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 70
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 71
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 72
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 73
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 74
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 75
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 76
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 77
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 78
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+- type: grf_bimat
+  h: 64
+  w: 64
+  seed: 79
+  correlation_length: 24.0
+  volume_fraction: 0.6
+  materials: [TPU, PLA]
+load_cases:
+- {type: uniaxial, disp_mag: 0.01, direction: x}
+- {type: uniaxial, disp_mag: -0.01, direction: x}
+- {type: uniaxial, disp_mag: 0.01, direction: y}
+- {type: uniaxial, disp_mag: -0.01, direction: y}
+- {type: shear, disp_mag: 0.01, direction: x}
+- {type: shear, disp_mag: 0.01, direction: y}
+- {type: biaxial, disp_x: 0.01, disp_y: 0.01}
+- {type: biaxial, disp_x: -0.01, disp_y: -0.01}

@@ -400,6 +400,9 @@ name = "fem-sim"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "jupyter" },
+    { name = "matplotlib" },
+    { name = "notebook" },
     { name = "numpy" },
     { name = "pip" },
     { name = "pyyaml" },
@@ -448,14 +451,17 @@ requires-dist = [
     { name = "jax", marker = "extra == 'jaxfem'", specifier = ">=0.4.30" },
     { name = "jax-fem", marker = "extra == 'all'", specifier = ">=0.0.6" },
     { name = "jax-fem", marker = "extra == 'jaxfem'", specifier = ">=0.0.6" },
+    { name = "jupyter", specifier = ">=1.1.1" },
     { name = "jupyter", marker = "extra == 'all'", specifier = ">=1.1" },
     { name = "jupyter", marker = "extra == 'notebook'", specifier = ">=1.1" },
+    { name = "matplotlib", specifier = ">=3.10.8" },
     { name = "matplotlib", marker = "extra == 'all'", specifier = ">=3.10" },
     { name = "matplotlib", marker = "extra == 'notebook'", specifier = ">=3.10" },
     { name = "matplotlib", marker = "extra == 'viz'", specifier = ">=3.10" },
     { name = "meshio", marker = "extra == 'jaxfem'", specifier = ">=5.3" },
     { name = "mpi4py", marker = "extra == 'all'", specifier = ">=4.0" },
     { name = "mpi4py", marker = "extra == 'mpi'", specifier = ">=4.0" },
+    { name = "notebook", specifier = ">=7.5.5" },
     { name = "numpy", specifier = ">=2.2" },
     { name = "pillow", marker = "extra == 'all'", specifier = ">=10.0" },
     { name = "pillow", marker = "extra == 'plugins'", specifier = ">=10.0" },

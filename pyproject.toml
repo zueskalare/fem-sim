@@ -8,6 +8,9 @@ version = "0.1.0"
 description = "FEM simulation orchestration and dataset generation for ML training."
 requires-python = ">=3.13"
 dependencies = [
+    "jupyter>=1.1.1",
+    "matplotlib>=3.10.8",
+    "notebook>=7.5.5",
     "numpy>=2.2",
     "pip>=26.0.1",
     "pyyaml>=6.0",
