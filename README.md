@@ -262,6 +262,14 @@ reference — see [Dataset Campaign](#dataset-campaign).
 | `make_porous`              | Plate with random circular pores            | `n_pores`, `pore_r_range=(r_min, r_max)`, `seed`, `margin` (keep pore centres ≥ margin from boundary)            |
 | `make_bimat_rectangle`     | Two materials split vertically              | `split_frac` (left material's column fraction); `E1/nu1/rho1` + `E2/nu2/rho2`                                   |
 | `make_grf_bimat`           | Gaussian-random-field two-phase composite   | `correlation_length` (feature size in pixels — larger = blobbier), `volume_fraction` (target fraction of phase A), `seed`; `E_A/nu_A/rho_A` + `E_B/nu_B/rho_B` (TPU × PLA defaults) |
+| `make_spinodoid` *(planned — see [docs/spinodoid.md](docs/spinodoid.md))* | Anisotropic plane-wave-sum bi-material microstructure (Kumar et al. 2020, 2D) | `theta1_deg, theta2_deg` (cone half-angles around `±x` / `±y` controlling anisotropy: isotropic / lamellar / cubic / oblique), `wavelength` (characteristic feature size in px), `volume_fraction`, `n_waves`, `seed`; `E_A/nu_A/rho_A` + `E_B/nu_B/rho_B` |
+
+## Design docs
+
+- **[docs/spinodoid.md](docs/spinodoid.md)** — 2D spinodoid bi-material
+  generator: math (eq. 1–3), admissible-direction set, algorithm,
+  morphology gallery, and the planned `make_spinodoid` API. Adapted from
+  Kumar et al. *npj Comput Mater* **6**, 73 (2020).
 
 ## Available Load Cases
 
